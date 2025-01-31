@@ -7,14 +7,18 @@
     height: 100vh;
     background-color: pink;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content:center;
     align-items: center;
 }
-
+.heading{
+    position: absolute;
+    top:20px;
+}
 .board {
     height: auto;
     width: auto;
-    background-color: #e3e6e6;
+    /* background-color: #e3e6e6; */
     display: grid;
     grid-gap: 1rem;
     grid-template-rows: repeat(3, 100px);
@@ -27,6 +31,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    /* box-shadow:  0 0 1rem rgba(0, 0,0,1); */
 }
 
 .circle {
@@ -36,3 +41,4 @@
     box-sizing: border-box;
     border: 7px solid black;
 }
+
