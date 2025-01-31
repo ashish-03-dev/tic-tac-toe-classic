@@ -70,7 +70,7 @@
     transition: opacity 1s ease-in;
 }
 .game {
-    height: 100vh;
+    min-height: 100vh;
     background-color: pink;
     display: flex;
     flex-direction: column;
@@ -99,22 +99,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* box-shadow:  0 0 1rem rgba(0, 0,0,1); */
+    box-sizing: border-box;
+    box-shadow:  0 0 2rem rgba(255,255,255,1);
 }
 
-.circle {
+
+.tick {
     height: 60px;
     width: 60px;
-    border-radius: 50%;
-    box-sizing: border-box;
-    border: 7px solid black;
-}
-
-.cross {
-    height: 100px;
-    width: 100px;
-    color: black;
-    font-size: 60px;
+    color: grey;
+    text-align: center;
+    font-size: 50px;
+    align-content: center;
 }
 
 .scoreBoard {
