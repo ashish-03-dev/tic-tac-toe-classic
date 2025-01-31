@@ -70,7 +70,7 @@
     transition: opacity 1s ease-in;
 }
 .game {
-    min-height: 100vh;
+    min-height: 100dvh;
     background-color: pink;
     display: flex;
     flex-direction: column;
