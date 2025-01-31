@@ -13,22 +13,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
             setTimeout(() => {
                 page.style.opacity = "1";
-            }, 100)
+            }, 100);
 
 
         }, 1000);
-    }, 1000)
+    }, 1000);
 });
 
 
-let sign;
+let denote;
+let computerSign;
+let code;
 
 let selected = document.querySelector(".choose");
 selected.addEventListener("click", (evt) => {
-    sign = evt.target.closest("button").value;
+    denote = evt.target.closest("button").value;
     let page = document.querySelector(".symbol");
     page.style.opacity = "0";
 
+
+    if(denote == "cross"){
+        computerSign = "cross";
+        code = '<i class="fa-solid fa-xmark"></i>';
+    }
+    else {
+        computerSign = "circle";
+        code = '<i class="fa-regular fa-circle"></i>';
+    };
 
     setTimeout(function () {
         page.style.display = "none";
@@ -46,16 +57,8 @@ selected.addEventListener("click", (evt) => {
 });
 
 
-let computerSign;
-let code;
-if(sign === "cross") {
-    computerSign = "cross";
-    code = '<i class="fa-solid fa-xmark"></i>';
-}
-else {
-    computerSign = "circle";
-    code = '<i class="fa-regular fa-circle"></i>';
-};
+
+
 
 
 
