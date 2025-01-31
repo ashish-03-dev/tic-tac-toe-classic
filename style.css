@@ -8,12 +8,12 @@
     background-color: pink;
     display: flex;
     flex-direction: column;
-    justify-content:center;
+    justify-content:space-around;
     align-items: center;
 }
 .heading{
-    position: absolute;
-    top:20px;
+    /* position: absolute; */
+    /* top:30px; */
 }
 .board {
     height: auto;
@@ -42,3 +42,33 @@
     border: 7px solid black;
 }
 
+.cross{
+
+}
+.scoreBoard{
+    height:35px;
+    width:100vw;
+    display: flex;
+}
+.scoreBoard::after{
+    height:100px;
+}
+.score{
+    width:50%;
+    text-align: center;
+    font-size: 2rem;
+    font-family:'Games',sans-serif;
+    font-weight: 400;
+}
+.score p{
+    font-size: 3rem;
+}
+.reset{
+    padding: 9px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
+    background-color: aqua;
+    color: white;
+    font-weight: 600;
+}
