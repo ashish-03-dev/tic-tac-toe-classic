@@ -1,0 +1,38 @@
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+.game {
+    height: 100vh;
+    background-color: pink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.board {
+    height: auto;
+    width: auto;
+    background-color: #e3e6e6;
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-rows: repeat(3, 100px);
+    grid-template-columns: repeat(3, 100px);
+}
+
+.box {
+    background-color: darkkhaki;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circle {
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    border: 7px solid black;
+}
