@@ -1,4 +1,3 @@
-window.scrollTo(0,1);
 document.addEventListener("DOMContentLoaded", function () {
     setTimeout(function () {
         let load = document.querySelector(".loadingScreen");
