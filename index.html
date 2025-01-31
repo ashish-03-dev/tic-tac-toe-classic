@@ -12,31 +12,42 @@
     <title>Document</title>
 </head>
 
-<body>
-    <div class="loader">
+<body class="load">
+    <div class="loadingScreen">
+        <div class="loader"></div>
+        <p>Loading...</p>
     </div>
-    <div class="game">
-        <h2 class="heading">Tic Tac Toe</h2>
-        <div class="scoreBoard">
-            <div class="score user">User:<br>
-                <p></p>
-            </div>
-            <div class="score JS">Js:<br>
-                <p></p>
-            </div>
+    <div class="symbol">
+        <p>CHOOSE YOUR PLAY</p>
+        <div class="choose">
+            <button class="select1" value="cross"><i class="fa-solid fa-xmark"></i></button>
+            <button class="select2" value="circle"><i class="fa-regular fa-circle"></i></button>
         </div>
-        <div class="board">
-            <div class="box" id="0"></div>
-            <div class="box" id="1"></div>
-            <div class="box" id="2"></div>
-            <div class="box" id="3"></div>
-            <div class="box" id="4"></div>
-            <div class="box" id="5"></div>
-            <div class="box" id="6"></div>
-            <div class="box" id="7"></div>
-            <div class="box" id="8"></div>
+    </div>
+    <div class="page">
+        <div class="game">
+            <h1 class="heading">Tic Tac Toe</h1>
+            <div class="scoreBoard">
+                <div class="score user">User:<br>
+                    <p></p>
+                </div>
+                <div class="score JS">Js:<br>
+                    <p></p>
+                </div>
+            </div>
+            <div class="board">
+                <div class="box" id="0"></div>
+                <div class="box" id="1"></div>
+                <div class="box" id="2"></div>
+                <div class="box" id="3"></div>
+                <div class="box" id="4"></div>
+                <div class="box" id="5"></div>
+                <div class="box" id="6"></div>
+                <div class="box" id="7"></div>
+                <div class="box" id="8"></div>
+            </div>
+            <button class="reset">Reset Score</button>
         </div>
-        <button class="reset">Reset Score</button>
     </div>
     <script src="script.js"></script>
 </body>

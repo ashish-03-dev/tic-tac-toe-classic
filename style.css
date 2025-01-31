@@ -2,19 +2,87 @@
     padding: 0px;
     margin: 0px;
 }
+.load{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+.loadingScreen{
+    display: flex;
+    align-items: center;
+    transition: opacity 1s ease-out,visibility 1s ease-out;
+}
+.loader {
+    height: 18px;
+    width: 18px;
+    box-sizing: border-box;
+    border-radius: 50%;
+    border-top: 2px solid green;
+    border-right: 2px solid green;
+    animation: rotateLoader 1s linear infinite;
+}
+.loadingScreen p{
+    margin-left: 10px;
+    font-size: 1.4rem;
+    align-self: center;
+}
+@keyframes rotateLoader {
+    to {
+        transform: rotate(360deg);
+    }
 
+}
+
+.symbol {
+    display: none;
+    opacity:0;
+    height: 100px;
+    min-width:350px;
+    background-color: darkkhaki;
+    border-radius: 10px;
+    transition:opacity 1s ease-in;
+}
+
+.symbol p {
+    height: 50%;
+    text-align: center;
+    font-weight: 600;
+    font-size: 30px;
+    color: white;
+}
+
+.choose {
+    height: 50%;
+    display: flex;
+}
+
+.choose button {
+    width: 50%;
+    border: none;
+    border-radius: 10px;
+    font-size: 2.2rem;
+    background-color: transparent;
+}
+.page{
+    display: none;
+    opacity: 0;
+    transition: opacity 1s ease-in;
+}
 .game {
     height: 100vh;
     background-color: pink;
     display: flex;
     flex-direction: column;
-    justify-content:space-around;
+    justify-content: space-around;
     align-items: center;
 }
-.heading{
+
+.heading {
     /* position: absolute; */
     /* top:30px; */
 }
+
 .board {
     height: auto;
     width: auto;
@@ -42,28 +110,36 @@
     border: 7px solid black;
 }
 
-.cross{
-
+.cross {
+    height: 100px;
+    width: 100px;
+    color: black;
+    font-size: 60px;
 }
-.scoreBoard{
-    height:35px;
-    width:100vw;
+
+.scoreBoard {
+    height: 35px;
+    width: 100vw;
     display: flex;
 }
-.scoreBoard::after{
-    height:100px;
+
+.scoreBoard::after {
+    height: 100px;
 }
-.score{
-    width:50%;
+
+.score {
+    width: 50%;
     text-align: center;
     font-size: 2rem;
-    font-family:'Games',sans-serif;
+    font-family: 'Games', sans-serif;
     font-weight: 400;
 }
-.score p{
+
+.score p {
     font-size: 3rem;
 }
-.reset{
+
+.reset {
     padding: 9px;
     font-size: 1rem;
     border: none;
