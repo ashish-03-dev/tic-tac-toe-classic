@@ -221,13 +221,13 @@
 }
 
 .winner{
-    height: 160px;
+    height: 100px;
     width: calc(100svw - 100px);
     text-align: center;
     align-content: center;
     background-color: #e3e6e6;
     color: white;
-    font-size: 5rem;
+    font-size: 4rem;
     font-weight: 800;
     border-radius: 10px;
     display: none;
