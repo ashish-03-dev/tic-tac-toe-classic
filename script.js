@@ -39,6 +39,7 @@ let code;
 
 let selected = document.querySelector(".choose");
 selected.addEventListener("click", (evt) => {
+
     denote = evt.target.closest("button").value;
     let symbol = document.querySelector(".symbol");
     symbol.style.opacity = "0";
@@ -63,39 +64,42 @@ selected.addEventListener("click", (evt) => {
         let game = document.querySelector(".game");
         game.style.display = "flex";
 
+        let round = document.querySelector(".round");
+        round.style.display = "block";
+
         setTimeout(() => {
             game.style.opacity = "1";
-            roundFnx();
+            round.style.opacity = "1";
+            roundFnxOut();
         }, 100);
 
 
     }, 300);
 });
 
-function roundFnx() {
+function roundFnxOut() {
+
+    let round = document.querySelector(".round");
 
     setTimeout(() => {
-        let node = document.querySelector(".round");
-        node.style.display = "block";
-        setTimeout(() => {
-            node.style.opacity = "1";
-            setTimeout(() => {
-                node.style.opacity = "0";
-                setTimeout(() => {
-                    node.style.display = "none";
+        round.style.opacity = "0";
 
-                }, 500)
-            }, 1500)
-        }, 100)
-    }, 500)
+        setTimeout(() => {
+            round.style.display = "none";
+        }, 600)
+
+    }, 1500)
 }
 
 
 let boxNodes = document.querySelectorAll(".box");
 
 boxNodes.forEach((node) => {
+
     node.onclick = () => {
+
         if (!node.querySelector(".tick")) {
+
             let tick = document.createElement("div");
             tick.innerHTML = code;
             tick.classList.add("tick");
@@ -108,8 +112,11 @@ boxNodes.forEach((node) => {
 let reset = document.querySelector(".reset");
 
 reset.onclick = () => {
+
     boxNodes.forEach((node) => {
+
         let div = node.querySelector(".tick");
+
         if (div) {
             div.remove();
         }

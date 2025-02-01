@@ -46,7 +46,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: pink;
+    background-color:rgb(255, 192, 203);
     opacity: 0;
     transition: opacity .3s ease-in;
 }
@@ -94,32 +94,33 @@
 }
 
 .round {
-    height: 100px;
-    min-width: 400px;
+    height: 150px;
+    width:100%;
     padding: 10px 20px;
     background-color: #e3e6e6;
     font-size: 4rem;
     color: grey;
-    border-radius: 16px;
-    border: 5px solid powderblue;
+    border-top: 5px solid powderblue;
+    border-bottom: 5px solid powderblue;
+    box-sizing: border-box;
     position: absolute;
     display: none;
     z-index: 1;
     opacity: 0;
     text-align: center;
     align-content: center;
-    transition: opacity .5s linear;
+    transition: opacity .4s linear;
 }
 
 .game {
     min-height: calc(100svh - 50px);
-    background-color: pink;
+    background-color: rgb(255, 192, 203);
     display: none;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
     opacity: 0;
-    transition: opacity .4s linear;
+    transition: opacity .2s linear;
 }
 
 
