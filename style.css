@@ -41,7 +41,6 @@
 
 .page {
     position: fixed;
-    top: 0px;
     display: none;
     height: 100svh;
     width: 100vw;
@@ -92,7 +91,7 @@
 }
 
 .game {
-    min-height: 100vh;
+    min-height: 100svh;
     background-color: pink;
     display: none;
     flex-direction: column;
