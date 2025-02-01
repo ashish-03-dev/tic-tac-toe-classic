@@ -275,8 +275,23 @@ function checkScore() {
 
     for (let listP of winPatterns) {
         let isSubset = listP.every(num => new Set(checkPlayer.map(Number)).has(num));
-        if (isSubset == true)
-            openWinner();
+        if (isSubset == true) {
+            glowCell(listP);
+            setTimeout(openWinner, 1000);
+            break;
+        }
+    }
+}
+
+function glowCell(listP) {
+
+    let strArray = listP.map(String);
+
+    for (let i of strArray) {
+
+        let box = document.getElementById(i);
+        box.style.boxShadow = "0 0 10px 10px rgba(255, 255, 255, .8)";
+        console.log(i);
     }
 }
 

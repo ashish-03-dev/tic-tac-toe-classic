@@ -185,9 +185,21 @@
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    box-shadow: 0 0 2rem rgba(255, 255, 255, 1);
+    position: relative;
+    overflow: hidden;
 }
 
+.box::before{
+    content: "";
+    position: absolute;
+    top:-5px;
+    bottom: -5px;
+    left: -5px;
+    right: -5px;
+    background: rgba(255,255,255,.2);
+    z-index: -1;;
+    filter: blur(5px);
+}
 
 .tick {
     height: 60px;
@@ -222,7 +234,7 @@
 
 .winner{
     height: 100px;
-    width: calc(100svw - 100px);
+    width: 330px;
     text-align: center;
     align-content: center;
     background-color: #e3e6e6;
