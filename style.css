@@ -42,6 +42,7 @@
 .page {
     position: sticky;
     top:0px;
+    overflow: hidden;
     display: none;
     height: 100vh;
     width: 100vw;
