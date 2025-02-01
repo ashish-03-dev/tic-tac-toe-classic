@@ -41,7 +41,7 @@
 
 .page {
     display: none;
-    height: 100vh;
+    height: 100svh;
     width: 100vw;
     justify-content: center;
     align-items: center;
@@ -67,7 +67,7 @@
 }
 
 .symbol p {
-    height: 50%;
+    height: 40%;
     text-align: center;
     font-weight: 600;
     font-size: 30px;
@@ -75,7 +75,7 @@
 }
 
 .choose {
-    height: 50%;
+    height: 60%;
     display: flex;
 }
 
@@ -85,6 +85,8 @@
     border-radius: 10px;
     font-size: 2.2rem;
     background-color: transparent;
+    cursor: pointer;
+    color: grey;
 }
 
 .game {
@@ -159,4 +161,5 @@
     background-color: aqua;
     color: white;
     font-weight: 600;
+    cursor: pointer;
 }
