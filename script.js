@@ -87,7 +87,9 @@ function openChooseMark() {
 
 let denote = "circle";
 let computerSign;
-let code;
+let code = '<i class="fa-regular fa-circle"></i>';
+let turn0 = true;
+
 
 let mark = document.querySelector(".choose");
 mark.addEventListener("click", (evt) => {
@@ -97,10 +99,12 @@ mark.addEventListener("click", (evt) => {
     if (denote == "cross") {
         computerSign = "cross";
         code = '<i class="fa-solid fa-xmark"></i>';
+        turn0 = false;
     }
     else {
         computerSign = "circle";
         code = '<i class="fa-regular fa-circle"></i>';
+        turn0 = true;
     };
 
     closeChooseMark();
@@ -164,10 +168,48 @@ function roundFnxOut(round) {
 
 
 
-if(selectedPlayer=="double"){
+// if (selectedPlayer == "double") {
 
-}else{
+// } else {
 
+// }
+
+
+
+let player1Boxes = [];
+let player2Boxes = [];
+
+
+
+function fill(node, n) {
+
+    if (!node.querySelector(".tick")) {
+
+        let tick = document.createElement("div");
+        tick.innerHTML = code;
+        tick.classList.add("tick");
+        node.append(tick);
+
+        selectBox(n);
+
+        checkScore();
+
+        changeTurn();
+
+    } else {
+        wrongmove();
+    }
+
+}
+
+
+
+function selectBox(n) {
+    if (turn0) {
+        player1Boxes.push(n)
+    } else {
+        player2Boxes.push(n);
+    }
 }
 
 
@@ -176,18 +218,76 @@ let boxNodes = document.querySelectorAll(".box");
 
 boxNodes.forEach((node) => {
 
-    node.onclick = () => {
+    node.onclick = (evt) => {
 
-        if (!node.querySelector(".tick")) {
+        let n = evt.target.closest(".box").id;
 
-            let tick = document.createElement("div");
-            tick.innerHTML = code;
-            tick.classList.add("tick");
-            node.append(tick);
+        if (turn0) {
+
+            fill(node, n);
+
+
+        } else {
+
+            fill(node, n);
+
         }
+
+
     }
 }
 );
+
+
+function changeTurn() {
+    if (turn0) {
+        turn0 = false;
+        code = '<i class="fa-solid fa-xmark"></i>';
+
+    } else {
+        turn0 = true;
+        code = '<i class="fa-regular fa-circle"></i>';
+
+    }
+}
+
+
+const winPatterns = [
+    [0, 1, 2],
+    [0, 3, 6],
+    [0, 4, 8],
+    [1, 4, 7],
+    [2, 5, 8],
+    [2, 4, 6],
+    [3, 4, 5],
+    [6, 7, 8]
+];
+
+
+function checkScore() {
+
+    let checkPlayer;
+    if (turn0)
+        checkPlayer = player1Boxes;
+    else
+        checkPlayer = player2Boxes;
+
+
+    for (let listP of winPatterns) {
+        let isSubset = listP.every(num => new Set(checkPlayer.map(Number)).has(num));
+        if (isSubset == true)
+            openWinner();
+    }
+}
+
+function openWinner() {
+    let node = document.querySelector(".winner");
+    node.style.display = "block";
+    setTimeout(() => {
+        node.style.opacity = "1";
+    }, 100)
+}
+
 
 let reset = document.querySelector(".reset");
 
@@ -201,4 +301,21 @@ reset.onclick = () => {
             div.remove();
         }
     })
+    player1Boxes.splice(0, player1Boxes.length);
+    player2Boxes.splice(0, player2Boxes.length);
+
+    closeWinnerBoard();
+
+}
+
+function closeWinnerBoard() {
+    let node = document.querySelector(".winner");
+    node.style.opacity = "0";
+
+    setTimeout(() => {
+
+        node.style.display = "none";
+
+    }, 300)
+
 }

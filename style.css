@@ -220,6 +220,24 @@
     font-size: 3rem;
 }
 
+.winner{
+    height: 160px;
+    width: calc(100svw - 100px);
+    text-align: center;
+    align-content: center;
+    background-color: #e3e6e6;
+    color: white;
+    font-size: 5rem;
+    font-weight: 800;
+    border-radius: 10px;
+    display: none;
+    position: absolute;
+    opacity: 0;
+    transition: opacity .3s linear;
+    outline: 5px solid powderblue;
+    box-sizing: border-box;
+}
+
 .reset {
     padding: 9px;
     font-size: 1rem;
