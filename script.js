@@ -1,22 +1,30 @@
 document.addEventListener("DOMContentLoaded", function () {
     setTimeout(function () {
+
         let load = document.querySelector(".loadingScreen");
         load.style.opacity = "0";
         load.style.visibility = "hidden";
 
 
         setTimeout(function () {
-            load.style.display = "none";
-            let page = document.querySelector(".symbol");
-            page.style.display = "block";
 
+            load.style.display = "none";
+
+            let page = document.querySelector(".page");
+            page.style.display = "flex";
+
+            let symbol = document.querySelector(".symbol");
+            symbol.style.display = "block";
 
             setTimeout(() => {
                 page.style.opacity = "1";
+                symbol.style.opacity = "1";
             }, 100);
 
 
-        }, 1000);
+        }, 500);
+
+
     }, 1000);
 });
 
@@ -28,11 +36,11 @@ let code;
 let selected = document.querySelector(".choose");
 selected.addEventListener("click", (evt) => {
     denote = evt.target.closest("button").value;
-    let page = document.querySelector(".symbol");
-    page.style.opacity = "0";
+    let symbol = document.querySelector(".symbol");
+    symbol.style.opacity = "0";
 
 
-    if(denote == "cross"){
+    if (denote == "cross") {
         computerSign = "cross";
         code = '<i class="fa-solid fa-xmark"></i>';
     }
@@ -42,24 +50,18 @@ selected.addEventListener("click", (evt) => {
     };
 
     setTimeout(function () {
-        page.style.display = "none";
-        let body = document.querySelector(".page");
-        body.classList.remove(".load");
-        body.style.display = "block";
+        symbol.style.display = "none";
+        let game = document.querySelector(".game");
+        game.style.display = "flex";
 
 
         setTimeout(() => {
-            body.style.opacity = "1";
+            game.style.opacity = "1";
         }, 100);
 
 
-    }, 1000);
+    }, 500);
 });
-
-
-
-
-
 
 
 let clickedNodes = document.querySelectorAll(".box");
@@ -75,3 +77,14 @@ clickedNodes.forEach((node) => {
     }
 }
 );
+
+let reset = document.querySelector(".reset");
+
+reset.onclick = () => {
+    clickedNodes.forEach((node) => {
+        let div = node.querySelector(".tick");
+        if (div) {
+            div.remove();
+        }
+    })
+}

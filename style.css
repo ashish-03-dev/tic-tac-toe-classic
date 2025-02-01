@@ -2,17 +2,20 @@
     padding: 0px;
     margin: 0px;
 }
-.load{
+
+.center {
     display: flex;
     height: 100vh;
     justify-content: center;
     align-items: center;
 }
-.loadingScreen{
+
+.loadingScreen {
     display: flex;
     align-items: center;
-    transition: opacity 1s ease-out,visibility 1s ease-out;
+    transition: opacity .5s ease-out, visibility .5s ease-out;
 }
+
 .loader {
     height: 18px;
     width: 18px;
@@ -22,11 +25,13 @@
     border-right: 2px solid green;
     animation: rotateLoader 1s linear infinite;
 }
-.loadingScreen p{
+
+.loadingScreen p {
     margin-left: 10px;
     font-size: 1.4rem;
     align-self: center;
 }
+
 @keyframes rotateLoader {
     to {
         transform: rotate(360deg);
@@ -34,14 +39,31 @@
 
 }
 
+.page {
+    display: none;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    background-color: pink;
+    opacity: 0;
+    transition: opacity .5s ease-in;
+}
+
+.heading {
+    position: absolute;
+    top: 25px;
+    z-index: 1;
+}
+
 .symbol {
     display: none;
-    opacity:0;
+    opacity: 0;
     height: 100px;
-    min-width:350px;
+    min-width: 350px;
     background-color: darkkhaki;
     border-radius: 10px;
-    transition:opacity 1s ease-in;
+    transition: opacity .5s ease-in;
 }
 
 .symbol p {
@@ -64,24 +86,18 @@
     font-size: 2.2rem;
     background-color: transparent;
 }
-.page{
-    display: none;
-    opacity: 0;
-    transition: opacity 1s ease-in;
-}
+
 .game {
-    min-height: 100svh;
+    min-height: 100vh;
     background-color: pink;
-    display: flex;
+    display: none;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
+    opacity: 0;
+    transition: opacity .5s ease-in;
 }
 
-.heading {
-    /* position: absolute; */
-    /* top:30px; */
-}
 
 .board {
     height: auto;
@@ -100,7 +116,7 @@
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    box-shadow:  0 0 2rem rgba(255,255,255,1);
+    box-shadow: 0 0 2rem rgba(255, 255, 255, 1);
 }
 
 
