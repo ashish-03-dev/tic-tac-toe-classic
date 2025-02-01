@@ -223,17 +223,10 @@ boxNodes.forEach((node) => {
         let n = evt.target.closest(".box").id;
 
         if (turn0) {
-
             fill(node, n);
-
-
         } else {
-
             fill(node, n);
-
         }
-
-
     }
 }
 );
@@ -290,8 +283,7 @@ function glowCell(listP) {
     for (let i of strArray) {
 
         let box = document.getElementById(i);
-        box.style.boxShadow = "0 0 10px 10px rgba(255, 255, 255, .8)";
-        console.log(i);
+        box.style.boxShadow = "0 0 10px 12px rgba(255, 255, 255, .8)";
     }
 }
 
@@ -305,7 +297,6 @@ function openWinner() {
 
 
 let reset = document.querySelector(".reset");
-
 reset.onclick = () => {
 
     boxNodes.forEach((node) => {
@@ -322,6 +313,7 @@ reset.onclick = () => {
     closeWinnerBoard();
 
 }
+
 
 function closeWinnerBoard() {
     let node = document.querySelector(".winner");
