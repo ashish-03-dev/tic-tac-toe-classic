@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", function () {
         load.style.opacity = "0";
         load.style.visibility = "hidden";
 
-
         setTimeout(function () {
 
             load.style.display = "none";
@@ -13,16 +12,18 @@ document.addEventListener("DOMContentLoaded", function () {
             let page = document.querySelector(".page");
             page.style.display = "flex";
 
-            let symbol = document.querySelector(".symbol");
-            symbol.style.display = "block";
+
+            let opponent = document.querySelector(".opponent");
+            opponent.style.display = "flex";
 
             setTimeout(() => {
                 page.style.opacity = "1";
 
                 setTimeout(() => {
-                    symbol.style.opacity = "1";
+                    opponent.style.opacity = "1";
 
                 }, 600)
+
             }, 100);
 
 
@@ -33,17 +34,65 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-let denote;
+let selectedPlayer
+
+let opponent = document.querySelector(".opponent");
+
+opponent.onclick = (evt) => {
+
+    selectedPlayer = evt.target.closest("button").value;
+
+    closeOpponentFnx(opponent);
+
+}
+
+
+
+function closeOpponentFnx(opponent) {
+
+    opponent.style.opacity = "0";
+    setTimeout(() => {
+        opponent.style.display = "none";
+
+        if (selectedPlayer == "double") {
+
+            gameFnx();
+
+        } else {
+
+            openChooseMark();
+        }
+
+    }, 300)
+
+}
+
+
+
+
+function openChooseMark() {
+
+    let mark = document.querySelector(".symbol");
+    mark.style.display = "block";
+
+    setTimeout(() => {
+
+        mark.style.opacity = "1";
+
+    }, 100)
+
+}
+
+
+
+let denote = "circle";
 let computerSign;
 let code;
 
-let selected = document.querySelector(".choose");
-selected.addEventListener("click", (evt) => {
+let mark = document.querySelector(".choose");
+mark.addEventListener("click", (evt) => {
 
     denote = evt.target.closest("button").value;
-    let symbol = document.querySelector(".symbol");
-    symbol.style.opacity = "0";
-
 
     if (denote == "cross") {
         computerSign = "cross";
@@ -54,42 +103,73 @@ selected.addEventListener("click", (evt) => {
         code = '<i class="fa-regular fa-circle"></i>';
     };
 
-    setTimeout(function () {
+    closeChooseMark();
 
-        symbol.style.display = "none";
-
-        let heading = document.querySelector(".heading");
-        heading.style.position = "relative";
-
-        let game = document.querySelector(".game");
-        game.style.display = "flex";
-
-        let round = document.querySelector(".round");
-        round.style.display = "block";
-
-        setTimeout(() => {
-            game.style.opacity = "1";
-            round.style.opacity = "1";
-            roundFnxOut();
-        }, 100);
-
-
-    }, 300);
 });
 
-function roundFnxOut() {
+
+
+function closeChooseMark() {
+
+    let choose = document.querySelector(".symbol");
+    choose.style.opacity = "0";
+
+
+    setTimeout(function () {
+
+        choose.style.display = "none";
+
+        gameFnx();
+
+    }, 300);
+
+}
+
+
+
+function gameFnx() {
+
+    let heading = document.querySelector(".heading");
+    heading.style.position = "relative";
+
+    let game = document.querySelector(".game");
+    game.style.display = "flex";
 
     let round = document.querySelector(".round");
+    round.style.display = "block";
+
+    setTimeout(() => {
+
+        game.style.opacity = "1";
+        round.style.opacity = "1";
+
+        roundFnxOut(round);
+
+    }, 100);
+
+}
+
+
+function roundFnxOut(round) {
 
     setTimeout(() => {
         round.style.opacity = "0";
 
         setTimeout(() => {
             round.style.display = "none";
-        }, 600)
+        }, 400)
 
     }, 1500)
 }
+
+
+
+if(selectedPlayer=="double"){
+
+}else{
+
+}
+
 
 
 let boxNodes = document.querySelectorAll(".box");

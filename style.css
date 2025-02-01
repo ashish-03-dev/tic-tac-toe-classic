@@ -46,7 +46,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color:rgb(255, 192, 203);
+    background-color: rgb(255, 192, 203);
     opacity: 0;
     transition: opacity .3s ease-in;
 }
@@ -60,6 +60,48 @@
     z-index: 1;
 }
 
+
+.opponent {
+    height: 120px;
+    min-width: 350px;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: darkkhaki;
+    border-radius: 10px;
+    outline: 2px solid indianred;
+    opacity: 0;
+    transition: opacity .3s linear;
+}
+
+.opponent p {
+    color: white;
+    font-weight: 600;
+    margin-left: 20px;
+}
+
+.opponent button {
+    font-size: 30px;
+    height:45%;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    cursor: pointer;
+}
+
+.userIcon {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+    padding-right: 20px;
+}
+
 .symbol {
     display: none;
     opacity: 0;
@@ -68,6 +110,8 @@
     background-color: darkkhaki;
     border-radius: 10px;
     transition: opacity .3s linear;
+    outline: 2px solid indianred;
+
 }
 
 .symbol p {
@@ -95,7 +139,7 @@
 
 .round {
     height: 150px;
-    width:100%;
+    width: 100%;
     padding: 10px 20px;
     background-color: #e3e6e6;
     font-size: 4rem;
