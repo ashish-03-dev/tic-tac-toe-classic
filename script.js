@@ -15,17 +15,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
             let symbol = document.querySelector(".symbol");
             symbol.style.display = "block";
-
+            
             setTimeout(() => {
                 page.style.opacity = "1";
-                symbol.style.opacity = "1";
+
+                setTimeout(()=>{
+                    symbol.style.opacity = "1";
+
+                },600)
             }, 100);
 
 
         }, 500);
 
 
-    }, 1000);
+    }, 1200);
 });
 
 
@@ -50,23 +54,23 @@ selected.addEventListener("click", (evt) => {
     };
 
     setTimeout(function () {
+
         symbol.style.display = "none";
         let game = document.querySelector(".game");
         game.style.display = "flex";
-
 
         setTimeout(() => {
             game.style.opacity = "1";
         }, 100);
 
 
-    }, 500);
+    }, 300);
 });
 
 
-let clickedNodes = document.querySelectorAll(".box");
+let boxNodes = document.querySelectorAll(".box");
 
-clickedNodes.forEach((node) => {
+boxNodes.forEach((node) => {
     node.onclick = () => {
         if (!node.querySelector(".tick")) {
             let tick = document.createElement("div");
@@ -81,7 +85,7 @@ clickedNodes.forEach((node) => {
 let reset = document.querySelector(".reset");
 
 reset.onclick = () => {
-    clickedNodes.forEach((node) => {
+    boxNodes.forEach((node) => {
         let div = node.querySelector(".tick");
         if (div) {
             div.remove();

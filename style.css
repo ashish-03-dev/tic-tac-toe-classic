@@ -48,7 +48,7 @@
     align-items: center;
     background-color: pink;
     opacity: 0;
-    transition: opacity .5s ease-in;
+    transition: opacity .3s ease-in;
 }
 
 .heading {
@@ -64,7 +64,7 @@
     min-width: 350px;
     background-color: darkkhaki;
     border-radius: 10px;
-    transition: opacity .5s ease-in;
+    transition: opacity .3s ease-in;
 }
 
 .symbol p {
@@ -98,7 +98,7 @@
     justify-content: space-evenly;
     align-items: center;
     opacity: 0;
-    transition: opacity .5s ease-in;
+    transition: opacity .4s ease-in;
 }
 
 
