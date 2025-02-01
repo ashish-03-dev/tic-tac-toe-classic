@@ -15,14 +15,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
             let symbol = document.querySelector(".symbol");
             symbol.style.display = "block";
-            
+
             setTimeout(() => {
                 page.style.opacity = "1";
 
-                setTimeout(()=>{
+                setTimeout(() => {
                     symbol.style.opacity = "1";
 
-                },600)
+                }, 600)
             }, 100);
 
 
@@ -56,16 +56,39 @@ selected.addEventListener("click", (evt) => {
     setTimeout(function () {
 
         symbol.style.display = "none";
+
+        let heading = document.querySelector(".heading");
+        heading.style.position = "relative";
+
         let game = document.querySelector(".game");
         game.style.display = "flex";
 
         setTimeout(() => {
             game.style.opacity = "1";
+            roundFnx();
         }, 100);
 
 
     }, 300);
 });
+
+function roundFnx() {
+
+    setTimeout(() => {
+        let node = document.querySelector(".round");
+        node.style.display = "block";
+        setTimeout(() => {
+            node.style.opacity = "1";
+            setTimeout(() => {
+                node.style.opacity = "0";
+                setTimeout(() => {
+                    node.style.display = "none";
+
+                }, 500)
+            }, 1500)
+        }, 100)
+    }, 500)
+}
 
 
 let boxNodes = document.querySelectorAll(".box");
