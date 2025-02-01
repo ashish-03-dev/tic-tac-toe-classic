@@ -43,7 +43,7 @@
     position: fixed;
     top: 0px;
     display: none;
-    height: 100vh;
+    height: 100dvh;
     width: 100vw;
     justify-content: center;
     align-items: center;
