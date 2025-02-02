@@ -377,10 +377,20 @@ function drawFnx() {
 
         if (roundNumber > 3) {
 
-            resetGame();
-            showWinner();
+            openDrawBoard();
 
-            //opens Draw Board
+            setTimeout(() => {
+
+                closeDrawBoard();
+
+                setTimeout(() => {
+
+                    resetGame();
+                    showWinner();
+
+                }, 800)
+
+            }, 1400);
 
         } else {
 
@@ -391,13 +401,14 @@ function drawFnx() {
                 closeDrawBoard();
 
                 setTimeout(() => {
-                    
+
+                    //allow to see drawn match
                     setTimeout(() => {
-                        
+
                         resetGame();
                         callRoundBoard();
 
-                    }, 800);
+                    }, 700);
 
                 }, 400)
 
@@ -408,6 +419,7 @@ function drawFnx() {
     }, 1300);
 }
 
+
 //open draw board
 function openDrawBoard() {
     let draw = document.querySelector(".drawBoard");
@@ -417,6 +429,7 @@ function openDrawBoard() {
 
     }, 100);
 }
+
 
 //close draw board
 function closeDrawBoard() {
@@ -520,7 +533,7 @@ const winPatterns = [
 
 function showWinner() {
     winnerStatusBoard();
-    setTimeout(closeStatusBoard, 3000);
+    setTimeout(closeStatusBoard, 2300);
 }
 
 //winning board according to Player wins
@@ -531,14 +544,11 @@ function winnerStatusBoard() {
     if (playerOWin == playerXWin) {
 
         winnerName.closest("div").style.width = "330px";
-
-        winnerName.innerText = "Draw";
+        winnerName.innerText = "Game Drawn";
 
     } else {
 
         winnerName.closest("div").style.width = "370px";
-        winnerName.closest("div").style.fontSize = "3rem";
-
 
         if (playerOWin > playerXWin) {
 

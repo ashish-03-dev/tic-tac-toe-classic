@@ -139,7 +139,7 @@
 }
 
 .round {
-    height: 150px;
+    height: 100px;
     width: 100%;
     padding: 10px 20px;
     background-color: #e3e6e6;
@@ -219,14 +219,14 @@
     height: 80px;
 }
 
-.drawBoard{
+.drawBoard {
     height: 100px;
     width: 330px;
     text-align: center;
     align-content: center;
     background-color: #e3e6e6;
     color: grey;
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 800;
     display: none;
     position: absolute;
@@ -237,8 +237,9 @@
     outline: 5px solid powderblue;
     box-sizing: border-box;
     transition: transform .4s linear, opacity .4s linear;
-    
+
 }
+
 
 .winner {
     height: 100px;
@@ -247,7 +248,7 @@
     align-content: center;
     background-color: #e3e6e6;
     color: grey;
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: 800;
     display: none;
     position: absolute;
@@ -284,7 +285,7 @@
     outline: 5px solid darkkhaki;
 }
 
-.wrongMove{
+.wrongMove {
     height: 38px;
     width: 140px;
     border-radius: 6px;
@@ -296,12 +297,13 @@
     opacity: 0;
     transition: opacity .3s linear;
 }
+
 .caption {
     height: 55px;
     width: 220px;
     border: none;
     border-radius: 10px;
-    background-color: palevioletred;
+    background-color: #24a0ed;
     color: white;
     font-weight: 600;
     cursor: pointer;
@@ -324,7 +326,7 @@
     border: none;
     background: transparent;
     color: #ffffff;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 600;
     cursor: pointer;
 }
