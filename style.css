@@ -185,7 +185,7 @@
     align-items: center;
     box-sizing: border-box;
     position: relative;
-    transition: box-shadow .6s linear;
+    transition: box-shadow .4s linear;
 }
 
 
@@ -233,7 +233,6 @@
     margin: auto;
     opacity: 0;
     border-radius: 10px;
-    /* transition: opacity .4s linear; */
     outline: 5px solid powderblue;
     box-sizing: border-box;
     transition: transform .4s linear, opacity .4s linear;

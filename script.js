@@ -206,6 +206,13 @@ function makeCaptionVisible() {
     caption.style.opacity = "1";
 }
 
+function makeCaptionInvisible() {
+    //make caption invisible
+    let caption = document.querySelector(".caption");
+    caption.style.visibility = "hidden";
+    caption.style.opacity = "0";
+}
+
 
 function roundFlex(round) {
 
@@ -291,7 +298,7 @@ function wrongMove() {
 
             wrong.style.opacity = "0";
             setTimeout(() => {
-                
+
                 wrong.style.display = "none";
 
             }, 300);
@@ -310,8 +317,6 @@ function selectBox(n) {
         player2Boxes.push(n);
     }
 }
-
-
 
 
 
@@ -343,13 +348,36 @@ function checkWinner() {
         if (isSubset == true) {
             glowBoxes(listP);
             disableBoxes();
-            setTimeout(openWinnerBoard, 1400);
+            roundOver();
             return;
         }
     }
 
     //no winner so next turn
     changeTurn();
+
+}
+
+//transition of winner
+function roundOver() {
+
+    countPlayerScore();
+
+    roundNumber += 1;
+
+    setTimeout(() => {
+
+        changeTurn();
+        resetGame();
+
+        setTimeout(() => {
+            if (roundNumber > 3)
+                showReplay();
+            else
+                callRoundBoard();
+
+        }, 800)
+    }, 2500)
 
 }
 
@@ -366,51 +394,27 @@ function glowBoxes(listP) {
 
 
 
-function openWinnerBoard() {
-    let node = document.querySelector(".winner");
-    node.style.display = "block";
-
-    setGameScore();
-
-    roundNumber += 1;
-
-    setTimeout(() => {
-
-        node.style.opacity = "1";
-
-        setTimeout(closeWinnerBoard, 1800);
-
-    }, 100)
-}
+// function openWinnerBoard() {
+//     let node = document.querySelector(".winner");
+//     node.style.display = "block";
+//     setTimeout(() => {
+//         node.style.opacity = "1";
+//     }, 100);
+// }
 
 
-function closeWinnerBoard() {
+// function closeWinnerBoard() {
+//     let node = document.querySelector(".winner");
+//     node.style.opacity = "0";
+//     setTimeout(() => {
+//         node.style.display = "none";
+//     }, 400);
 
-    let node = document.querySelector(".winner");
-    node.style.opacity = "0";
+// }
 
-    changeTurn();
-
-    setTimeout(() => {
-        node.style.display = "none";
-        resetGame();
-
-
-        if (roundNumber > 3) {
-
-            showReplay();
-
-        } else {
-
-            callRoundBoard();
-        }
-
-    }, 400)
-
-}
 
 //set score 
-function setGameScore() {
+function countPlayerScore() {
     if (turn0) {
         playerOWin++;
     } else {
@@ -431,14 +435,15 @@ resetBtn.addEventListener("click", resetGame);
 function resetGame() {
     boxNodes.forEach((box) => {
 
+        //remove box ticks
         let tick = box.querySelector(".tick");
+        //remove box glow
         box.classList.remove("glow");
 
         if (tick) {
             tick.remove();
         }
     })
-
 
     player1Boxes.splice(0, player1Boxes.length);
     player2Boxes.splice(0, player2Boxes.length);
@@ -467,7 +472,7 @@ function showReplay() {
     setTimeout(() => {
         game.style.display = "none";
 
-        replayBoard();
+        setTimeout(replayBoard(),200);
 
     }, 100);
 
@@ -475,8 +480,11 @@ function showReplay() {
 
 function replayBoard() {
     let play = document.querySelector(".replay");
-    play.style.opacity = "1";
     play.style.display = "block";
+    setTimeout(() => {
+
+        play.style.opacity = "1";
+    }, 100);
 }
 
 
