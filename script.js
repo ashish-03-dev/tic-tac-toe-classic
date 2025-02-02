@@ -169,6 +169,7 @@ function call3Round() {
 
             //call round Number
             callRoundBoard()
+
         }, 1800);
 
     }, 100);
@@ -179,7 +180,6 @@ function callRoundBoard() {
 
     changeTurn();
 
-    makeCaptionVisible();
 
     let round = document.querySelector(".round");
     round.style.display = "block";
@@ -224,9 +224,14 @@ function roundFlex(round) {
 
 function roundFnxOut(round) {
     setTimeout(() => {
-        round.style.opacity = "0";
 
+
+        round.style.opacity = "0";
         setTimeout(() => {
+
+            //make caption visible
+            makeCaptionVisible();
+
             round.style.display = "none";
             enableBoxes();
 
@@ -345,6 +350,9 @@ function checkWinner() {
         let isSubset = listP.every(num => new Set(checkPlayer.map(Number)).has(num));
         if (isSubset == true) {
 
+            //make caption invisible
+            makeCaptionInvisible();
+
             //glow boxes
             glowBoxes(listP);
 
@@ -374,6 +382,9 @@ function drawFnx() {
     roundNumber += 1;
 
     setTimeout(() => {
+
+        //make caption invisible
+        makeCaptionInvisible();
 
         if (roundNumber > 3) {
 
