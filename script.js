@@ -34,16 +34,13 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-let selectedPlayer
-
+let selectedPlayer;
 let opponent = document.querySelector(".opponent");
 
 opponent.onclick = (evt) => {
 
     selectedPlayer = evt.target.closest("button").value;
-
     closeOpponentFnx(opponent);
-
 }
 
 
@@ -83,20 +80,32 @@ function openChooseMark() {
 
 }
 
+function closeChooseMark() {
+
+    let choose = document.querySelector(".symbol");
+    choose.style.opacity = "0";
+
+    setTimeout(function () {
+
+        choose.style.display = "none";
+        gameFnx();
+
+    }, 300);
+
+}
 
 
-let denote = "circle";
+let playerSign = "circle";
 let computerSign;
 let code = '<i class="fa-regular fa-circle"></i>';
 let turn0 = true;
 
-
 let mark = document.querySelector(".choose");
 mark.addEventListener("click", (evt) => {
 
-    denote = evt.target.closest("button").value;
+    playerSign = evt.target.closest("button").value;
 
-    if (denote == "cross") {
+    if (playerSign == "cross") {
         computerSign = "cross";
         code = '<i class="fa-solid fa-xmark"></i>';
         turn0 = false;
@@ -113,21 +122,6 @@ mark.addEventListener("click", (evt) => {
 
 
 
-function closeChooseMark() {
-
-    let choose = document.querySelector(".symbol");
-    choose.style.opacity = "0";
-
-
-    setTimeout(function () {
-
-        choose.style.display = "none";
-
-        gameFnx();
-
-    }, 300);
-
-}
 
 let roundNumber = 1;
 let playerOWin = 0;
@@ -138,24 +132,46 @@ function gameFnx() {
     let heading = document.querySelector(".heading");
     heading.style.position = "relative";
 
+    //call 3 Round Board and game visibility
+    call3Round();
+
+}
+
+
+function disableBoxes() {
+    let board = document.querySelector(".board");
+    board.style.pointerEvents = "none";
+}
+
+function enableBoxes() {
+    let board = document.querySelector(".board");
+    board.style.pointerEvents = "auto";
+}
+
+function call3Round() {
+
+    disableBoxes();
+
     let game = document.querySelector(".game");
     game.style.display = "flex";
 
     let round = document.querySelector(".round");
     round.style.display = "block";
+    round.innerHTML = `<p><i>3 Rounds</i></p>`;
 
     setTimeout(() => {
 
+        //call game visibility
         game.style.opacity = "1";
         round.style.opacity = "1";
 
-        // roundFnxOut(round);
+        roundNumber = 1;
+
         setTimeout(() => {
             callRoundBoard()
-        }, 1500);
+        }, 1300);
 
     }, 100);
-
 }
 
 
@@ -164,21 +180,25 @@ function callRoundBoard() {
     let round = document.querySelector(".round");
     round.style.display = "block";
 
+    let str = `<p><i>Round ${roundNumber}</i></p>`;
+    round.innerHTML = str;
+
     setTimeout(() => {
 
         round.style.opacity = "1";
 
     }, 100);
 
-    console.log(roundNumber);
-    let str = `<p><i>${roundNumber} Round</i></p>`;
-    round.innerHTML = str;
 
+    //grow animation
     roundFlex(round);
+
 }
 
 
 function roundFlex(round) {
+
+    //remove round board
     roundFnxOut(round);
 }
 
@@ -189,9 +209,10 @@ function roundFnxOut(round) {
 
         setTimeout(() => {
             round.style.display = "none";
+            enableBoxes();
         }, 400)
 
-    }, 1500)
+    }, 1300)
 }
 
 
@@ -278,6 +299,7 @@ function checkScore() {
         let isSubset = listP.every(num => new Set(checkPlayer.map(Number)).has(num));
         if (isSubset == true) {
             glowBoxes(listP);
+            disableBoxes();
             setTimeout(openWinnerBoard, 500);
             return;
         }
@@ -312,7 +334,7 @@ function openWinnerBoard() {
 
         node.style.opacity = "1";
 
-        setTimeout(setScore, 2500);
+        setTimeout(setGameScore, 2500);
 
     }, 100)
 }
@@ -323,17 +345,15 @@ function closeWinnerBoard() {
     node.style.opacity = "0";
 
     setTimeout(() => {
-
         node.style.display = "none";
-        
         resetGame();
 
-        if(roundNumber>3){
+        if (roundNumber > 3) {
 
-            playAgain();
+            showReplay();
 
-        }else{
-   
+        } else {
+
             callRoundBoard();
         }
 
@@ -342,7 +362,7 @@ function closeWinnerBoard() {
 }
 
 //set score and give order for closing
-function setScore() {
+function setGameScore() {
     if (turn0) {
         playerOWin++;
     } else {
@@ -384,25 +404,30 @@ function closeGlowName() {
     changeTurn();
 }
 
+
+
+//reset Button
+let resetBtn = document.querySelector(".reset");
+resetBtn.addEventListener("click", resetGame);
+
+//reset function
 function resetGame() {
+    boxNodes.forEach((box) => {
 
-    boxNodes.forEach((node) => {
+        let tick = box.querySelector(".tick");
+        box.classList.remove("glow");
 
-        let div = node.querySelector(".tick");
-
-        if (div) {
-            div.remove();
+        if (tick) {
+            tick.remove();
         }
     })
+
+
     player1Boxes.splice(0, player1Boxes.length);
     player2Boxes.splice(0, player2Boxes.length);
 
 }
 
-
-
-let resetBtn = document.querySelector(".reset");
-resetBtn.onclick = resetGame();
 
 const winPatterns = [
     [0, 1, 2],
@@ -415,6 +440,39 @@ const winPatterns = [
     [6, 7, 8]
 ];
 
-function playAgain(){
+function showReplay() {
+    let heading = document.querySelector(".heading");
+    heading.style.position = "absolute";
 
+    let game = document.querySelector(".game");
+    game.style.opacity = "0";
+
+    setTimeout(() => {
+        game.style.display = "none";
+
+        replayBoard();
+
+    }, 200);
+
+}
+
+function replayBoard() {
+    let play = document.querySelector(".replay");
+    console.log(play);
+    play.style.opacity = "1";
+    play.style.display = "block";
+}
+
+
+let replay = document.querySelector(".replay");
+replay.addEventListener("click", restartGame);
+
+
+function restartGame() {
+    let replay = document.querySelector(".replay");
+    replay.style.opacity = "0";
+    setTimeout(() => {
+        replay.style.display = "none";
+        call3Round();
+    }, 500)
 }
