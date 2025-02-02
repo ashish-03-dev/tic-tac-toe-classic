@@ -255,7 +255,7 @@ function setScoreNumber() {
 // }
 
 
-
+let boxesFilled = 0;
 let boxNodes = document.querySelectorAll(".box");
 boxNodes.forEach((node) => {
     node.onclick = (evt) => {
@@ -279,7 +279,7 @@ function fill(node, n) {
         node.append(tick);
 
         selectBox(n);
-
+        boxesFilled++;
         checkWinner();
 
     }
@@ -354,9 +354,67 @@ function checkWinner() {
         }
     }
 
+    //draw Condition
+    if (boxesFilled == 9) {
+        drawFnx();
+    }
+
     //no winner so next turn
     changeTurn();
 
+}
+
+
+function drawFnx() {
+
+    roundNumber += 1;
+
+    setTimeout(() => {
+
+        if (roundNumber > 3) {
+
+            resetGame();
+            showWinner();
+
+            //opens Draw Board
+
+        } else {
+
+            openDrawBoard();
+
+            setTimeout(() => {
+
+                closeDrawBoard();
+                resetGame();
+                setTimeout(() => {
+
+                    callRoundBoard();
+
+                }, 400);
+
+            }, 2500);
+
+        }
+
+    }, 1500);
+}
+
+function openDrawBoard() {
+    let draw = document.querySelector(".drawBoard");
+    draw.style.display = "block";
+    setTimeout(() => {
+        draw.style.opacity = "1";
+
+    }, 100);
+}
+
+function closeDrawBoard() {
+    let draw = document.querySelector(".drawBoard");
+    draw.style.opacity = "0";
+    setTimeout(() => {
+        draw.style.display = "none";
+
+    }, 400);
 }
 
 //transition of winner
@@ -368,9 +426,9 @@ function roundOver() {
 
     setTimeout(() => {
 
-        resetGame();
 
         setTimeout(() => {
+            resetGame();
             if (roundNumber > 3)
                 showWinner();
             else
@@ -413,6 +471,7 @@ resetBtn.addEventListener("click", resetGame);
 
 //reset function
 function resetGame() {
+    boxesFilled = 0;
     boxNodes.forEach((box) => {
 
         //remove box ticks
@@ -444,23 +503,33 @@ const winPatterns = [
 
 
 function showWinner() {
-    openWinnerBoard();
-    setTimeout(closeWinnerBoard, 2500);
+    winnerStatusBoard();
+    setTimeout(statusBoardClose, 2500);
 }
 
+//winning board according to Player wins
+function winnerStatusBoard() {
 
-function openWinnerBoard() {
-    let OScore = document.querySelector(".OScore");
-    let XScore = document.querySelector(".XScore");
+    let winnerName = document.querySelector(".winnerName");
 
-    if (turn0) {
-        OScore.innerHTML = "Player O WON";
-        XScore.innerHTML = "Player X LOST";
+    if (playerOWin == playerXWin) {
+
+        winnerName.innerText = "Draw";
+
     } else {
-        OScore.innerHTML = "Player O LOST";
-        XScore.innerHTML = "Player X WON";
-    }
 
+        winnerName.closest("div").style.width = "370px";
+
+        if (playerOWin > playerXWin) {
+
+            winnerName.innerText = "Player O WON";
+
+        } else {
+
+            winnerName.innerText = "Player X WON";
+        }
+
+    }
     let node = document.querySelector(".winner");
     node.style.display = "block";
     setTimeout(() => {
@@ -469,7 +538,7 @@ function openWinnerBoard() {
 }
 
 
-function closeWinnerBoard() {
+function statusBoardClose() {
     let node = document.querySelector(".winner");
     node.style.opacity = "0";
     setTimeout(() => {
