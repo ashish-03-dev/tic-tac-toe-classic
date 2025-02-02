@@ -83,7 +83,7 @@
 
 .opponent button {
     font-size: 30px;
-    height:45%;
+    height: 45%;
     width: 100%;
     border: none;
     border-radius: 10px;
@@ -189,15 +189,16 @@
     overflow: hidden;
 }
 
-.box::before{
+.box::before {
     content: "";
     position: absolute;
-    top:-5px;
+    top: -5px;
     bottom: -5px;
     left: -5px;
     right: -5px;
-    background: rgba(255,255,255,.2);
-    z-index: -1;;
+    background: rgba(255, 255, 255, .2);
+    z-index: -1;
+    ;
     filter: blur(5px);
 }
 
@@ -230,9 +231,11 @@
 
 .score p {
     font-size: 3rem;
+    border-radius: 10px;
+    transition: box-shadow .3s linear;
 }
 
-.winner{
+.winner {
     height: 100px;
     width: 330px;
     text-align: center;
@@ -245,7 +248,7 @@
     display: none;
     position: absolute;
     opacity: 0;
-    transition: opacity .3s linear;
+    transition: opacity .5s linear;
     outline: 5px solid powderblue;
     box-sizing: border-box;
 }
@@ -259,4 +262,8 @@
     color: white;
     font-weight: 600;
     cursor: pointer;
+}
+
+.glow {
+    box-shadow: 0 0 10px 12px rgba(255, 255, 255, .8);
 }
