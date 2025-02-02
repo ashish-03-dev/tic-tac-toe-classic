@@ -169,7 +169,7 @@ function call3Round() {
 
             //call round Number
             callRoundBoard()
-        }, 1300);
+        }, 1800);
 
     }, 100);
 }
@@ -269,7 +269,7 @@ boxNodes.forEach((node) => {
 let player1Boxes = [];
 let player2Boxes = [];
 
-
+//every click
 function fill(node, n) {
     if (!node.querySelector(".tick")) {
 
@@ -289,28 +289,25 @@ function fill(node, n) {
 
 }
 
+
+//wrong move animation
 function wrongMove() {
     let wrong = document.querySelector(".wrongMove");
+
     wrong.style.display = "block";
+    wrong.style.opacity = "1";
+
     setTimeout(() => {
-
-        wrong.style.opacity = "1";
+        wrong.style.opacity = "0";
         setTimeout(() => {
+            wrong.style.display = "none";
+        }, 300);
 
-            wrong.style.opacity = "0";
-            setTimeout(() => {
-
-                wrong.style.display = "none";
-
-            }, 300);
-
-        }, 1200);
-
-    }, 10);
+    }, 1200);
 
 }
 
-
+//push box into players box list
 function selectBox(n) {
     if (turn0) {
         player1Boxes.push(n)
@@ -320,7 +317,7 @@ function selectBox(n) {
 }
 
 
-
+//changes turn
 function changeTurn() {
     if (turn0) {
         turn0 = false;
@@ -334,7 +331,7 @@ function changeTurn() {
 }
 
 
-
+//check Winner
 function checkWinner() {
 
     let checkPlayer;
@@ -347,8 +344,14 @@ function checkWinner() {
     for (let listP of winPatterns) {
         let isSubset = listP.every(num => new Set(checkPlayer.map(Number)).has(num));
         if (isSubset == true) {
+
+            //glow boxes
             glowBoxes(listP);
+
+            // disable boxes
             disableBoxes();
+
+            //after win
             roundOver();
             return;
         }
@@ -365,6 +368,7 @@ function checkWinner() {
 }
 
 
+//draw condition fnx
 function drawFnx() {
 
     roundNumber += 1;
@@ -385,20 +389,26 @@ function drawFnx() {
             setTimeout(() => {
 
                 closeDrawBoard();
-                resetGame();
+
                 setTimeout(() => {
+                    
+                    setTimeout(() => {
+                        
+                        resetGame();
+                        callRoundBoard();
 
-                    callRoundBoard();
+                    }, 800);
 
-                }, 400);
+                }, 400)
 
-            }, 2500);
+            }, 1400);
 
         }
 
-    }, 1500);
+    }, 1300);
 }
 
+//open draw board
 function openDrawBoard() {
     let draw = document.querySelector(".drawBoard");
     draw.style.display = "block";
@@ -408,6 +418,7 @@ function openDrawBoard() {
     }, 100);
 }
 
+//close draw board
 function closeDrawBoard() {
     let draw = document.querySelector(".drawBoard");
     draw.style.opacity = "0";
@@ -417,41 +428,45 @@ function closeDrawBoard() {
     }, 400);
 }
 
-//transition of winner
+
+
+//transition after winner
 function roundOver() {
 
+    //set player wins value
     countPlayerScore();
 
+    //increase round
     roundNumber += 1;
 
     setTimeout(() => {
+        //given time to see board boxes
 
-
+        resetGame();
         setTimeout(() => {
-            resetGame();
+
             if (roundNumber > 3)
                 showWinner();
             else
                 callRoundBoard();
 
-        }, 800)
+        }, 500);
+
     }, 2500)
 
 }
 
-
+//glow the boxes and cleared by reset
 function glowBoxes(listP) {
     let strArray = listP.map(String);
-
     for (let i of strArray) {
-
         let box = document.getElementById(i);
         box.classList.add("glow");
     }
 }
 
 
-//set score 
+//set player wins
 function countPlayerScore() {
     if (turn0) {
         playerOWin++;
@@ -476,6 +491,7 @@ function resetGame() {
 
         //remove box ticks
         let tick = box.querySelector(".tick");
+
         //remove box glow
         box.classList.remove("glow");
 
@@ -504,7 +520,7 @@ const winPatterns = [
 
 function showWinner() {
     winnerStatusBoard();
-    setTimeout(statusBoardClose, 2500);
+    setTimeout(closeStatusBoard, 3000);
 }
 
 //winning board according to Player wins
@@ -514,11 +530,15 @@ function winnerStatusBoard() {
 
     if (playerOWin == playerXWin) {
 
+        winnerName.closest("div").style.width = "330px";
+
         winnerName.innerText = "Draw";
 
     } else {
 
         winnerName.closest("div").style.width = "370px";
+        winnerName.closest("div").style.fontSize = "3rem";
+
 
         if (playerOWin > playerXWin) {
 
@@ -537,14 +557,14 @@ function winnerStatusBoard() {
     }, 100);
 }
 
-
-function statusBoardClose() {
+//close Winner Board
+function closeStatusBoard() {
     let node = document.querySelector(".winner");
     node.style.opacity = "0";
     setTimeout(() => {
         node.style.display = "none";
 
-        //closing game call
+        //closing game page
         closeGame();
     }, 400);
 }
@@ -558,7 +578,8 @@ function closeGame() {
 
         //call replay Board
         replayBoard();
-    }, 200);
+
+    }, 400);
 }
 
 function replayBoard() {
