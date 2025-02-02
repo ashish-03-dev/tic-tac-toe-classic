@@ -171,7 +171,6 @@
 .board {
     height: auto;
     width: auto;
-    /* background-color: #e3e6e6; */
     display: grid;
     grid-gap: 1rem;
     grid-template-rows: repeat(3, 100px);
@@ -200,7 +199,7 @@
 }
 
 .scoreBoard {
-    height: 40px;
+    height: 70px;
     width: 100vw;
     display: flex;
     justify-content: space-around;
@@ -228,12 +227,12 @@
     color: white;
     font-size: 4rem;
     font-weight: 800;
-    border-radius: 10px;
     display: none;
     position: absolute;
     inset: 0;
     margin: auto;
     opacity: 0;
+    border-radius: 10px;
     transition: opacity .4s linear;
     outline: 5px solid powderblue;
     box-sizing: border-box;
