@@ -151,6 +151,7 @@ function call3Round() {
 
     disableBoxes();
 
+    //make game visibility
     let game = document.querySelector(".game");
     game.style.display = "flex";
 
@@ -160,13 +161,14 @@ function call3Round() {
 
     setTimeout(() => {
 
-        //call game visibility
+        //make game visibility
         game.style.opacity = "1";
         round.style.opacity = "1";
 
-
         setTimeout(() => {
             roundNumber = 1;
+
+            //call round Number
             callRoundBoard()
         }, 1300);
 
@@ -175,6 +177,8 @@ function call3Round() {
 
 
 function callRoundBoard() {
+
+    makeCaptionVisible();
 
     let round = document.querySelector(".round");
     round.style.display = "block";
@@ -192,6 +196,14 @@ function callRoundBoard() {
     //grow animation
     roundFlex(round);
 
+}
+
+
+function makeCaptionVisible() {
+    //make caption visible
+    let caption = document.querySelector(".caption");
+    caption.style.visibility = "visible";
+    caption.style.opacity = "1";
 }
 
 
