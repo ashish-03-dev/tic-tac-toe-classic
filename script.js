@@ -276,11 +276,31 @@ function fill(node, n) {
 
     }
     else {
-        wrongmove();
+        wrongMove();
     }
 
 }
 
+function wrongMove() {
+    let wrong = document.querySelector(".wrongMove");
+    wrong.style.display = "block";
+    setTimeout(() => {
+
+        wrong.style.opacity = "1";
+        setTimeout(() => {
+
+            wrong.style.opacity = "0";
+            setTimeout(() => {
+                
+                wrong.style.display = "none";
+
+            }, 300);
+
+        }, 1200);
+
+    }, 10);
+
+}
 
 
 function selectBox(n) {
@@ -455,7 +475,6 @@ function showReplay() {
 
 function replayBoard() {
     let play = document.querySelector(".replay");
-    console.log(play);
     play.style.opacity = "1";
     play.style.display = "block";
 }

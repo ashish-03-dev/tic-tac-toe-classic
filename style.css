@@ -233,9 +233,16 @@
     margin: auto;
     opacity: 0;
     border-radius: 10px;
-    transition: opacity .4s linear;
+    /* transition: opacity .4s linear; */
     outline: 5px solid powderblue;
     box-sizing: border-box;
+    transition: transform .4s linear, opacity .4s linear;
+}
+
+.animateWinner {
+    transform: translateY(0px);
+    opacity: 0;
+
 }
 
 .replay {
@@ -256,6 +263,18 @@
     outline: 5px solid darkkhaki;
 }
 
+.wrongMove{
+    height: 38px;
+    width: 140px;
+    border-radius: 6px;
+    border: none;
+    font-size: 1.1rem;
+    display: none;
+    bottom: 200px;
+    position: absolute;
+    opacity: 0;
+    transition: opacity .3s linear;
+}
 .caption {
     height: 55px;
     width: 220px;
