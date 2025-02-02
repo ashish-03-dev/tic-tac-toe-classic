@@ -323,7 +323,7 @@ function checkWinner() {
         if (isSubset == true) {
             glowBoxes(listP);
             disableBoxes();
-            setTimeout(openWinnerBoard, 600);
+            setTimeout(openWinnerBoard, 1400);
             return;
         }
     }
@@ -350,8 +350,6 @@ function openWinnerBoard() {
     let node = document.querySelector(".winner");
     node.style.display = "block";
 
-    openGlowName();
-
     setGameScore();
 
     roundNumber += 1;
@@ -371,7 +369,7 @@ function closeWinnerBoard() {
     let node = document.querySelector(".winner");
     node.style.opacity = "0";
 
-    closeGlowName();
+    changeTurn();
 
     setTimeout(() => {
         node.style.display = "none";
@@ -398,39 +396,9 @@ function setGameScore() {
     } else {
         playerXWin++;
     }
+
     //set Score in display
     setTimeout(setScoreNumber, 1500);
-}
-
-
-
-function openGlowName() {
-
-    let playerName;
-
-    if (turn0) {
-        playerName = document.getElementById("player0");
-    } else {
-        playerName = document.getElementById("playerX");
-    }
-
-    playerName.classList.add("glow");
-}
-
-
-function closeGlowName() {
-
-    let playerName;
-
-    if (turn0) {
-        playerName = document.getElementById("player0");
-    } else {
-        playerName = document.getElementById("playerX");
-    }
-
-    playerName.classList.remove("glow");
-
-    changeTurn();
 }
 
 
