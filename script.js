@@ -130,7 +130,6 @@ let playerXWin = 0;
 //game inside page
 function gameFnx() {
 
-
     //call 3 Round Board and game visibility
     call3Round();
 
@@ -177,6 +176,8 @@ function call3Round() {
 
 
 function callRoundBoard() {
+
+    changeTurn();
 
     makeCaptionVisible();
 
@@ -367,12 +368,11 @@ function roundOver() {
 
     setTimeout(() => {
 
-        changeTurn();
         resetGame();
 
         setTimeout(() => {
             if (roundNumber > 3)
-                showReplay();
+                showWinner();
             else
                 callRoundBoard();
 
@@ -391,26 +391,6 @@ function glowBoxes(listP) {
         box.classList.add("glow");
     }
 }
-
-
-
-// function openWinnerBoard() {
-//     let node = document.querySelector(".winner");
-//     node.style.display = "block";
-//     setTimeout(() => {
-//         node.style.opacity = "1";
-//     }, 100);
-// }
-
-
-// function closeWinnerBoard() {
-//     let node = document.querySelector(".winner");
-//     node.style.opacity = "0";
-//     setTimeout(() => {
-//         node.style.display = "none";
-//     }, 400);
-
-// }
 
 
 //set score 
@@ -462,28 +442,61 @@ const winPatterns = [
     [6, 7, 8]
 ];
 
-function showReplay() {
-    let heading = document.querySelector(".heading");
-    heading.style.position = "absolute";
 
+function showWinner() {
+    openWinnerBoard();
+    setTimeout(closeWinnerBoard, 2500);
+}
+
+
+function openWinnerBoard() {
+    let OScore = document.querySelector(".OScore");
+    let XScore = document.querySelector(".XScore");
+
+    if (turn0) {
+        OScore.innerHTML = "Player O WON";
+        XScore.innerHTML = "Player X LOST";
+    } else {
+        OScore.innerHTML = "Player O LOST";
+        XScore.innerHTML = "Player X WON";
+    }
+
+    let node = document.querySelector(".winner");
+    node.style.display = "block";
+    setTimeout(() => {
+        node.style.opacity = "1";
+    }, 100);
+}
+
+
+function closeWinnerBoard() {
+    let node = document.querySelector(".winner");
+    node.style.opacity = "0";
+    setTimeout(() => {
+        node.style.display = "none";
+
+        //closing game call
+        closeGame();
+    }, 400);
+}
+
+function closeGame() {
     let game = document.querySelector(".game");
     game.style.opacity = "0";
 
     setTimeout(() => {
         game.style.display = "none";
 
-        setTimeout(replayBoard(),200);
-
-    }, 100);
-
+        //call replay Board
+        replayBoard();
+    }, 200);
 }
 
 function replayBoard() {
-    let play = document.querySelector(".replay");
-    play.style.display = "block";
+    let replay = document.querySelector(".replay");
+    replay.style.display = "block";
     setTimeout(() => {
-
-        play.style.opacity = "1";
+        replay.style.opacity = "1";
     }, 100);
 }
 
