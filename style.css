@@ -203,25 +203,20 @@
     height: 40px;
     width: 100vw;
     display: flex;
+    justify-content: space-around;
 }
 
 .score {
-    height: 100%;
-    width: 50%;
+    height: 40px;
+    font-size: 30px;
     font-family: 'Games', sans-serif;
     font-weight: 400;
-    align-content: center;
-}
-
-.score::p {
-    height: 100px;
-}
-
-.score p {
+    align-content: space-between;
     text-align: center;
-    font-size: 2.5rem;
-    border-radius: 10px;
-    transition: box-shadow .3s linear;
+}
+
+score::after{
+    height: 80px;
 }
 
 .winner {

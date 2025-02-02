@@ -210,10 +210,22 @@ function roundFnxOut(round) {
         setTimeout(() => {
             round.style.display = "none";
             enableBoxes();
+
         }, 400)
 
     }, 1300)
 }
+
+
+function setScoreNumber() {
+
+    let s1 = document.querySelector(".player0Win");
+    s1.innerText = playerOWin;
+    let s2 = document.querySelector(".playerXWin");
+    s2.innerText = playerXWin;
+
+}
+
 
 
 
@@ -330,11 +342,15 @@ function openWinnerBoard() {
 
     openGlowName();
 
+    setGameScore();
+
+    roundNumber += 1;
+
     setTimeout(() => {
 
         node.style.opacity = "1";
 
-        setTimeout(setGameScore, 2500);
+        setTimeout(closeWinnerBoard, 2500);
 
     }, 100)
 }
@@ -347,6 +363,8 @@ function closeWinnerBoard() {
     setTimeout(() => {
         node.style.display = "none";
         resetGame();
+
+        setTimeout(closeGlowName, 1000);
 
         if (roundNumber > 3) {
 
@@ -361,16 +379,15 @@ function closeWinnerBoard() {
 
 }
 
-//set score and give order for closing
+//set score 
 function setGameScore() {
     if (turn0) {
         playerOWin++;
     } else {
         playerXWin++;
     }
-    roundNumber += 1;
-    closeWinnerBoard();
-    setTimeout(closeGlowName, 1000);
+    //set Score in display
+    setScoreNumber();
 }
 
 
@@ -473,6 +490,9 @@ function restartGame() {
     replay.style.opacity = "0";
     setTimeout(() => {
         replay.style.display = "none";
+        playerOWin = 0;
+        playerXWin = 0;
+        setScoreNumber();
         call3Round();
     }, 500)
 }
