@@ -52,9 +52,9 @@
 }
 
 .heading {
-    height: 50px;
+    height: 100px;
     position: absolute;
-    top: 20px;
+    top: 0px;
     display: flex;
     align-items: center;
     z-index: 1;
@@ -157,7 +157,7 @@
 }
 
 .game {
-    min-height: calc(100svh - 50px);
+    min-height: calc(100svh - 100px);
     background-color: rgb(255, 192, 203);
     display: none;
     flex-direction: column;
@@ -186,7 +186,7 @@
     align-items: center;
     box-sizing: border-box;
     position: relative;
-    transition: box-shadow .2s linear;
+    transition: box-shadow .6s linear;
 }
 
 
@@ -211,11 +211,10 @@
     font-size: 30px;
     font-family: 'Games', sans-serif;
     font-weight: 400;
-    align-content: space-between;
     text-align: center;
+    
 }
-
-score::after{
+.score::after{
     height: 80px;
 }
 
@@ -231,8 +230,10 @@ score::after{
     border-radius: 10px;
     display: none;
     position: absolute;
+    inset:0;
+    margin: auto;
     opacity: 0;
-    transition: opacity .5s linear;
+    transition: opacity .4s linear;
     outline: 5px solid powderblue;
     box-sizing: border-box;
 }
@@ -240,10 +241,11 @@ score::after{
 .replay {
     height: 100px;
     width: 330px;
-    background-color: #e3e6e6;
+    background-color: #ffffff;
     color: grey;
     border-radius: 10px;
     font-size: 4rem;
+    font-weight: 900;
     text-align: center;
     align-content: center;
     position: absolute;
@@ -251,10 +253,11 @@ score::after{
     opacity: 0;
     transition: opacity .5s linear;
     cursor: pointer;
+    outline: 5px solid darkkhaki;
 }
 
 .caption {
-    height: 40px;
+    height: 70px;
     width: 200px;
     /* padding: 9px; */
     font-size: 1.6rem;

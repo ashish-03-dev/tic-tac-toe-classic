@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
             let page = document.querySelector(".page");
             page.style.display = "flex";
 
-
             let opponent = document.querySelector(".opponent");
             opponent.style.display = "flex";
 
@@ -127,10 +126,10 @@ let roundNumber = 1;
 let playerOWin = 0;
 let playerXWin = 0;
 
+
+//game inside page
 function gameFnx() {
 
-    let heading = document.querySelector(".heading");
-    heading.style.position = "relative";
 
     //call 3 Round Board and game visibility
     call3Round();
@@ -165,9 +164,9 @@ function call3Round() {
         game.style.opacity = "1";
         round.style.opacity = "1";
 
-        roundNumber = 1;
 
         setTimeout(() => {
+            roundNumber = 1;
             callRoundBoard()
         }, 1300);
 
@@ -261,7 +260,7 @@ function fill(node, n) {
 
         selectBox(n);
 
-        checkScore();
+        checkWinner();
 
     }
     else {
@@ -298,7 +297,7 @@ function changeTurn() {
 
 
 
-function checkScore() {
+function checkWinner() {
 
     let checkPlayer;
     if (turn0)
@@ -312,7 +311,7 @@ function checkScore() {
         if (isSubset == true) {
             glowBoxes(listP);
             disableBoxes();
-            setTimeout(openWinnerBoard, 500);
+            setTimeout(openWinnerBoard, 600);
             return;
         }
     }
@@ -321,7 +320,6 @@ function checkScore() {
     changeTurn();
 
 }
-
 
 
 function glowBoxes(listP) {
@@ -350,21 +348,23 @@ function openWinnerBoard() {
 
         node.style.opacity = "1";
 
-        setTimeout(closeWinnerBoard, 2500);
+        setTimeout(closeWinnerBoard, 1800);
 
     }, 100)
 }
 
 
 function closeWinnerBoard() {
+
     let node = document.querySelector(".winner");
     node.style.opacity = "0";
+
+    closeGlowName();
 
     setTimeout(() => {
         node.style.display = "none";
         resetGame();
 
-        setTimeout(closeGlowName, 1000);
 
         if (roundNumber > 3) {
 
@@ -375,7 +375,7 @@ function closeWinnerBoard() {
             callRoundBoard();
         }
 
-    }, 700)
+    }, 400)
 
 }
 
@@ -387,7 +387,7 @@ function setGameScore() {
         playerXWin++;
     }
     //set Score in display
-    setScoreNumber();
+    setTimeout(setScoreNumber, 1500);
 }
 
 
@@ -469,7 +469,7 @@ function showReplay() {
 
         replayBoard();
 
-    }, 200);
+    }, 100);
 
 }
 
