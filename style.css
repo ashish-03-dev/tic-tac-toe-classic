@@ -199,14 +199,14 @@
 }
 
 .scoreBoard {
-    height: 70px;
+    height: 55px;
     width: 100vw;
     display: flex;
     justify-content: space-around;
 }
 
 .score {
-    height: 40px;
+    height: 100%;
     font-size: 30px;
     font-family: 'Games', sans-serif;
     font-weight: 400;
@@ -257,9 +257,8 @@
 }
 
 .caption {
-    height: 70px;
-    width: 240px;
-    font-size: 1.6rem;
+    height: 55px;
+    width: 220px;
     border: none;
     border-radius: 10px;
     background-color: palevioletred;
@@ -285,7 +284,7 @@
     border: none;
     background: transparent;
     color: #ffffff;
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: 600;
     cursor: pointer;
 }
