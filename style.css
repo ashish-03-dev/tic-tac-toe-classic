@@ -171,7 +171,7 @@
 
 .turn {
     height: 55px;
-    width: 220px;
+    width: 160px;
     background-color: #24a0ed;
     color: #ffffff;
     font-size: 2rem;
@@ -181,6 +181,8 @@
     border-radius: 10px;
     position: absolute;
     top: 170px;
+    opacity: 0;
+    transition: opacity .4s linear;
 }
 
 
@@ -321,8 +323,8 @@
 }
 
 .caption {
-    height: 55px;
-    width: 220px;
+    height: 50px;
+    width: 180px;
     border: none;
     border-radius: 10px;
     background-color: #24a0ed;

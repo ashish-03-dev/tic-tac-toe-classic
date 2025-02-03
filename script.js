@@ -178,9 +178,6 @@ function call3Round() {
 
 function callRoundBoard() {
 
-    changeTurn();
-
-
     let round = document.querySelector(".round");
     round.style.display = "block";
 
@@ -229,6 +226,9 @@ function roundFnxOut(round) {
         round.style.opacity = "0";
         setTimeout(() => {
 
+            showTurnArea();
+            showTurn();
+
             //make caption visible
             makeCaptionVisible();
 
@@ -240,6 +240,14 @@ function roundFnxOut(round) {
     }, 1300)
 }
 
+function showTurnArea(){
+    let turn = document.querySelector(".turn");
+    turn.style.opacity="1";
+}
+function hideTurnArea(){
+    let turn = document.querySelector(".turn");
+    turn.style.opacity="0";
+}
 
 function setScoreNumber() {
 
@@ -333,8 +341,14 @@ function changeTurn() {
         code = '<i class="fa-regular fa-circle"></i>';
 
     }
+    showTurn();
 }
 
+function showTurn() {
+    let turn = document.querySelector(".turn");
+    if (turn0) turn.innerHTML = "<p>TURN: O</p>";
+    else turn.innerHTML = "<p>TURN: X</p>";
+}
 
 //check Winner
 function checkWinner() {
@@ -368,10 +382,11 @@ function checkWinner() {
     //draw Condition
     if (boxesFilled == 9) {
         drawFnx();
-    }
+    } else {
 
-    //no winner so next turn
-    changeTurn();
+        //no winner so next turn
+        changeTurn();
+    }
 
 }
 
@@ -413,9 +428,11 @@ function drawFnx() {
 
                 setTimeout(() => {
 
+
                     //allow to see drawn match
                     setTimeout(() => {
 
+                        changeTurn();
                         resetGame();
                         callRoundBoard();
 
@@ -471,8 +488,10 @@ function roundOver() {
 
             if (roundNumber > 3)
                 showWinner();
-            else
+            else {
                 callRoundBoard();
+                setTimeout(changeTurn, 1500);
+            }
 
         }, 500);
 
@@ -550,6 +569,7 @@ function showWinner() {
 //winning board according to Player wins
 function winnerStatusBoard() {
 
+    hideTurnArea();
     let winnerName = document.querySelector(".winnerName");
 
     if (playerOWin == playerXWin) {
