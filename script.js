@@ -251,7 +251,7 @@ function hideTurnArea(){
 
 function setScoreNumber() {
 
-    let s1 = document.querySelector(".player0Win");
+    let s1 = document.querySelector(".playerOWin");
     s1.innerText = playerOWin;
     let s2 = document.querySelector(".playerXWin");
     s2.innerText = playerXWin;
