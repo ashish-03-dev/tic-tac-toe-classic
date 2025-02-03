@@ -15,21 +15,23 @@ document.addEventListener("DOMContentLoaded", function () {
             let page = document.querySelector(".page");
             page.style.display = "flex";
 
-            let opponent = document.querySelector(".opponent");
-            opponent.style.display = "flex";
-
+            
             setTimeout(() => {
                 page.style.opacity = "1";
-
+                
                 //make heading animation
                 let heading = document.querySelector(".heading");
                 setTimeout(() => {
-                    heading.classList.add("animate")
+
+                    heading.classList.add("animate");
+
+                    let opponent = document.querySelector(".opponent");
+                    opponent.style.display = "flex";
                     
                     setTimeout(() => {
                         opponent.style.opacity = "1";
                         
-                    }, 1400);
+                    }, 1600);
 
                 }, 1000);
 
