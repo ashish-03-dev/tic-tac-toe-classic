@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", function () {
             let page = document.querySelector(".page");
             page.style.display = "flex";
 
-            
             setTimeout(() => {
                 page.style.opacity = "1";
                 
@@ -188,6 +187,7 @@ function call3Round() {
 
 function callRoundBoard() {
 
+
     let round = document.querySelector(".round");
     round.style.display = "block";
 
@@ -300,6 +300,7 @@ function fill(node, n) {
         tick.innerHTML = code;
         tick.classList.add("tick");
         node.append(tick);
+        node.classList.add("clicked");
 
         selectBox(n);
         boxesFilled++;
@@ -403,6 +404,9 @@ function checkWinner() {
 
 //draw condition fnx
 function drawFnx() {
+    
+    //disable boxes
+    disableBoxes();
 
     roundNumber += 1;
 
@@ -547,6 +551,7 @@ function resetGame() {
 
         //remove box glow
         box.classList.remove("glow");
+        box.classList.remove("clicked");
 
         if (tick) {
             tick.remove();
