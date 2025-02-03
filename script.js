@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             load.style.display = "none";
 
+            //make page appear
             let page = document.querySelector(".page");
             page.style.display = "flex";
 
@@ -20,6 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
             setTimeout(() => {
                 page.style.opacity = "1";
 
+                //make heading animation
                 let heading = document.querySelector(".heading");
                 setTimeout(() => {
                     heading.classList.add("animate")
@@ -32,7 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 }, 1000);
 
             }, 100);
-
 
         }, 500);
 
