@@ -53,14 +53,22 @@
 
 .heading {
     height: 100px;
+    font-size: 2rem;
     position: absolute;
-    top: 0px;
+
+    top: calc(100svh / 2 - 50px);
+
     display: flex;
     align-items: center;
     z-index: 1;
     color: darkgreen;
+    transition: all 1.2s ease-in;
 }
 
+.heading.animate{
+    font-size: 1rem;
+    top:0px;
+}
 
 .opponent {
     height: 120px;
@@ -287,11 +295,11 @@
     transition: transform .4s linear, opacity .4s linear;
 }
 
-.animateWinner {
+/* .animateWinner {
     transform: translateY(0px);
     opacity: 0;
 
-}
+} */
 
 .replay {
     height: 100px;

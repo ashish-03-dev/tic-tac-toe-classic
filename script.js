@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     setTimeout(function () {
 
+        //given time to load
+
         let load = document.querySelector(".loadingScreen");
         load.style.opacity = "0";
         load.style.visibility = "hidden";
@@ -18,16 +20,21 @@ document.addEventListener("DOMContentLoaded", function () {
             setTimeout(() => {
                 page.style.opacity = "1";
 
+                let heading = document.querySelector(".heading");
                 setTimeout(() => {
-                    opponent.style.opacity = "1";
+                    heading.classList.add("animate")
+                    
+                    setTimeout(() => {
+                        opponent.style.opacity = "1";
+                        
+                    }, 1400);
 
-                }, 600)
+                }, 1000);
 
             }, 100);
 
 
         }, 500);
-
 
     }, 1200);
 });
@@ -240,13 +247,13 @@ function roundFnxOut(round) {
     }, 1300)
 }
 
-function showTurnArea(){
+function showTurnArea() {
     let turn = document.querySelector(".turn");
-    turn.style.opacity="1";
+    turn.style.opacity = "1";
 }
-function hideTurnArea(){
+function hideTurnArea() {
     let turn = document.querySelector(".turn");
-    turn.style.opacity="0";
+    turn.style.opacity = "0";
 }
 
 function setScoreNumber() {
@@ -598,6 +605,7 @@ function winnerStatusBoard() {
     }, 100);
 }
 
+
 //close Winner Board
 function closeStatusBoard() {
     let node = document.querySelector(".winner");
@@ -622,6 +630,7 @@ function closeGame() {
 
     }, 400);
 }
+
 
 function replayBoard() {
     let replay = document.querySelector(".replay");
