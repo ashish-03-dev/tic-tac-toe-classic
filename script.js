@@ -61,6 +61,7 @@ function gameFnx() {
 
             // make boxes animation
             makeBoxesAppear();
+            disableBoxes();
 
             setTimeout(() => {
 
@@ -101,8 +102,6 @@ function disableBoxes() {
 
 
 function call3Round() {
-
-    disableBoxes();
 
     let round = document.querySelector(".round");
     round.style.display = "block";
@@ -584,8 +583,7 @@ function closeGame() {
             //call replay Board
             replayBoard();
 
-        }, 400)
-
+        }, 600);
 
     }, 1000);
 }
