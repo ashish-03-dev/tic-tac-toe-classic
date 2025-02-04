@@ -70,85 +70,6 @@
     top:0px;
 }
 
-.opponent {
-    height: 120px;
-    min-width: 350px;
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    background-color: darkkhaki;
-    border-radius: 10px;
-    outline: 2px solid indianred;
-    opacity: 0;
-    transition: opacity .3s linear;
-}
-
-.opponent p {
-    color: white;
-    font-weight: 600;
-    margin-left: 20px;
-}
-
-.opponent button {
-    font-size: 30px;
-    height: 45%;
-    width: 100%;
-    border: none;
-    border-radius: 10px;
-    background-color: transparent;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-    cursor: pointer;
-}
-
-.userIcon {
-    display: flex;
-    justify-content: flex-end;
-    flex: 1;
-    padding-right: 20px;
-}
-
-.symbol {
-    display: none;
-    opacity: 0;
-    height: 100px;
-    min-width: 350px;
-    background-color: darkkhaki;
-    border-radius: 10px;
-    transition: opacity .3s linear;
-    outline: 2px solid indianred;
-
-}
-
-.symbol p {
-    height: 40%;
-    text-align: center;
-    font-weight: 600;
-    font-size: 30px;
-    color: white;
-}
-
-.choose {
-    height: 60%;
-    display: flex;
-}
-
-.choose button {
-    width: 50%;
-    border: none;
-    border-radius: 10px;
-    font-size: 2.2rem;
-    background-color: transparent;
-    cursor: pointer;
-    color: grey;
-}
-
-.choose button:hover{
-    opacity: .5;
-}
 
 .round {
     height: 100px;
@@ -188,7 +109,7 @@
 .turn {
     height: 55px;
     width: 160px;
-    background-color: #c2b97f;
+    background-color: #8e5572;
     color: #ffffff;
     font-size: 2rem;
     font-weight: 800;
@@ -198,7 +119,7 @@
     margin-top: 30px;
     margin-bottom: 460px;
     opacity: 0;
-    transition: opacity .4s linear;
+    transition: opacity .2s linear;
 }
 
 
@@ -213,7 +134,7 @@
     grid-template-rows: repeat(3, 100px);
     grid-template-columns: repeat(3, 100px);
     position: absolute;
-
+    
 }
 
 .box {
@@ -224,7 +145,12 @@
     align-items: center;
     box-sizing: border-box;
     position: relative;
-    transition: box-shadow .4s linear;
+    scale: 0;
+    transition:transform  .2s linear,scale .8s linear;
+}
+
+.box.zoom{
+    transform:scale(1.05);
 }
 
 
@@ -296,7 +222,7 @@
     border-radius: 10px;
     outline: 5px solid powderblue;
     box-sizing: border-box;
-    transition: transform .4s linear, opacity .4s linear;
+    transition: opacity .4s linear;
 }
 
 
@@ -344,7 +270,7 @@
     cursor: pointer;
     visibility: hidden;
     opacity: 0;
-    transition: opacity .4s linear, visibility .4s linear;
+    transition: opacity .2s linear, visibility .2s linear;
     text-align: center;
     align-content: center;
     margin-bottom: 50px;
@@ -354,9 +280,6 @@
     height: 10px;
 }
 
-.glow {
-    box-shadow: 0 0 10px 12px rgba(255, 255, 255, .8);
-}
 
 .reset {
     border: none;

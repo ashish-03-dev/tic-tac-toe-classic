@@ -17,14 +17,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
             setTimeout(() => {
                 page.style.opacity = "1";
-                
-                //make heading animation
-                let heading = document.querySelector(".heading");
+
+
                 setTimeout(() => {
 
+                    //make heading animation
+                    let heading = document.querySelector(".heading");
                     heading.classList.add("animate");
 
-                    setTimeout(gameFnx,1600);
+                    setTimeout(gameFnx, 1600);
 
                 }, 1000);
 
@@ -48,15 +49,44 @@ let playerXWin = 0;
 //game inside page
 function gameFnx() {
 
-    //call 3 Round Board and game visibility
-    call3Round();
+    let game = document.querySelector(".game");
+    game.style.display = "flex";
+
+    setTimeout(() => {
+
+        // make game visibility
+        game.style.opacity = "1";
+
+        setTimeout(() => {
+
+            // make boxes animation
+            makeBoxesAppear();
+
+            setTimeout(() => {
+
+                call3Round();
+            }, 1500);
+
+        }, 500);
+
+    }, 100);
 
 }
 
+function makeBoxesAppear() {
+    let boxNodes = document.querySelectorAll(".box");
+    boxNodes.forEach((box) => {
+        box.style.scale = "1";
+    })
 
-function disableBoxes() {
-    let board = document.querySelector(".board");
-    board.style.pointerEvents = "none";
+}
+
+function makeBoxesDisappear() {
+    let boxNodes = document.querySelectorAll(".box");
+    boxNodes.forEach((box) => {
+        box.style.scale = "0";
+    })
+
 }
 
 function enableBoxes() {
@@ -64,13 +94,15 @@ function enableBoxes() {
     board.style.pointerEvents = "auto";
 }
 
+function disableBoxes() {
+    let board = document.querySelector(".board");
+    board.style.pointerEvents = "none";
+}
+
+
 function call3Round() {
 
     disableBoxes();
-
-    //make game visibility
-    let game = document.querySelector(".game");
-    game.style.display = "flex";
 
     let round = document.querySelector(".round");
     round.style.display = "block";
@@ -78,8 +110,6 @@ function call3Round() {
 
     setTimeout(() => {
 
-        //make game visibility
-        game.style.opacity = "1";
         round.style.opacity = "1";
 
         setTimeout(() => {
@@ -111,7 +141,7 @@ function callRoundBoard() {
 
 
     //grow animation
-    roundFlex(round);
+    roundFnxOut(round);
 
 }
 
@@ -128,13 +158,6 @@ function makeCaptionInvisible() {
     let caption = document.querySelector(".caption");
     caption.style.visibility = "hidden";
     caption.style.opacity = "0";
-}
-
-
-function roundFlex(round) {
-
-    //remove round board
-    roundFnxOut(round);
 }
 
 
@@ -288,7 +311,7 @@ function checkWinner() {
             makeCaptionInvisible();
 
             //glow boxes
-            glowBoxes(listP);
+            zoomInBoxes(listP);
 
             // disable boxes
             disableBoxes();
@@ -313,7 +336,7 @@ function checkWinner() {
 
 //draw condition fnx
 function drawFnx() {
-    
+
     //disable boxes
     disableBoxes();
 
@@ -422,12 +445,25 @@ function roundOver() {
 
 }
 
-//glow the boxes and cleared by reset
-function glowBoxes(listP) {
+//glow the zoom and cleared by reset
+function zoomInBoxes(listP) {
     let strArray = listP.map(String);
     for (let i of strArray) {
         let box = document.getElementById(i);
-        box.classList.add("glow");
+        box.classList.add("zoom");
+    }
+
+    setTimeout(() => {
+        zoomOutBoxes(listP);
+    }, 200);
+}
+
+//remove zoom
+function zoomOutBoxes(listP) {
+    let strArray = listP.map(String);
+    for (let i of strArray) {
+        let box = document.getElementById(i);
+        box.classList.remove("zoom");
     }
 }
 
@@ -458,8 +494,7 @@ function resetGame() {
         //remove box ticks
         let tick = box.querySelector(".tick");
 
-        //remove box glow
-        box.classList.remove("glow");
+        //reset box hover effect
         box.classList.remove("clicked");
 
         if (tick) {
@@ -536,16 +571,23 @@ function closeStatusBoard() {
 }
 
 function closeGame() {
-    let game = document.querySelector(".game");
-    game.style.opacity = "0";
+
+    makeBoxesDisappear();
 
     setTimeout(() => {
-        game.style.display = "none";
+        let game = document.querySelector(".game");
+        game.style.opacity = "0";
 
-        //call replay Board
-        replayBoard();
+        setTimeout(() => {
+            game.style.display = "none";
 
-    }, 400);
+            //call replay Board
+            replayBoard();
+
+        }, 400)
+
+
+    }, 1000);
 }
 
 
@@ -570,6 +612,25 @@ function restartGame() {
         playerOWin = 0;
         playerXWin = 0;
         setScoreNumber();
-        call3Round();
+
+
+        let game = document.querySelector(".game");
+        game.style.display = "flex";
+
+        setTimeout(() => {
+
+            // make game visibility
+            game.style.opacity = "1";
+
+            // make boxes animation
+            makeBoxesAppear();
+
+            setTimeout(() => {
+
+                call3Round();
+            }, 1500);
+
+        }, 100);
+
     }, 500)
 }
