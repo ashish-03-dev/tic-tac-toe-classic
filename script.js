@@ -454,7 +454,7 @@ function zoomInBoxes(listP) {
 
     setTimeout(() => {
         zoomOutBoxes(listP);
-    }, 200);
+    }, 400);
 }
 
 //remove zoom
