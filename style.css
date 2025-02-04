@@ -96,7 +96,8 @@
     border-radius: 10px;
     opacity: 0;
     transition: opacity .2s linear;
-    margin-top: 50px;
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
 
 .gameBoard {
@@ -277,7 +278,8 @@
     transition: opacity .2s linear, visibility .2s linear;
     text-align: center;
     align-content: center;
-    margin-bottom: 60px;
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
 
 .caption::after {
