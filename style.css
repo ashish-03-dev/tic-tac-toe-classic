@@ -255,9 +255,6 @@
     border-radius: 6px;
     border: none;
     font-size: 1.1rem;
-    display: none;
-    bottom: 200px;
-    position: absolute;
     opacity: 0;
     transition: opacity .3s linear;
     background-color: #ffffff;
