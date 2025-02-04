@@ -247,15 +247,10 @@ function fill(node, n) {
 function wrongMove() {
     let wrong = document.querySelector(".wrongMove");
 
-    wrong.style.display = "block";
     wrong.style.opacity = "1";
 
     setTimeout(() => {
         wrong.style.opacity = "0";
-        setTimeout(() => {
-            wrong.style.display = "none";
-        }, 300);
-
     }, 1200);
 
 }
