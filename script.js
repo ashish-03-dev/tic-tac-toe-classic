@@ -604,7 +604,7 @@ function restartGame() {
     let replay = document.querySelector(".replay");
     replay.style.opacity = "0";
     
-    // makeBoxesAppear();
+    makeBoxesAppear();
 
     setTimeout(() => {
         replay.style.display = "none";
