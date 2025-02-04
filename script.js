@@ -24,13 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     heading.classList.add("animate");
 
-                    let opponent = document.querySelector(".opponent");
-                    opponent.style.display = "flex";
-                    
-                    setTimeout(() => {
-                        opponent.style.opacity = "1";
-                        
-                    }, 1600);
+                    setTimeout(gameFnx,1600);
 
                 }, 1000);
 
@@ -42,93 +36,8 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-let selectedPlayer;
-let opponent = document.querySelector(".opponent");
-
-opponent.onclick = (evt) => {
-
-    selectedPlayer = evt.target.closest("button").value;
-    closeOpponentFnx(opponent);
-}
-
-
-
-function closeOpponentFnx(opponent) {
-
-    opponent.style.opacity = "0";
-    setTimeout(() => {
-        opponent.style.display = "none";
-
-        if (selectedPlayer == "double") {
-
-            gameFnx();
-
-        } else {
-
-            openChooseMark();
-        }
-
-    }, 300)
-
-}
-
-
-
-
-function openChooseMark() {
-
-    let mark = document.querySelector(".symbol");
-    mark.style.display = "block";
-
-    setTimeout(() => {
-
-        mark.style.opacity = "1";
-
-    }, 100)
-
-}
-
-function closeChooseMark() {
-
-    let choose = document.querySelector(".symbol");
-    choose.style.opacity = "0";
-
-    setTimeout(function () {
-
-        choose.style.display = "none";
-        gameFnx();
-
-    }, 300);
-
-}
-
-
-let playerSign = "circle";
-let computerSign;
 let code = '<i class="fa-regular fa-circle"></i>';
 let turn0 = true;
-
-let mark = document.querySelector(".choose");
-mark.addEventListener("click", (evt) => {
-
-    playerSign = evt.target.closest("button").value;
-
-    if (playerSign == "cross") {
-        computerSign = "cross";
-        code = '<i class="fa-solid fa-xmark"></i>';
-        turn0 = false;
-    }
-    else {
-        computerSign = "circle";
-        code = '<i class="fa-regular fa-circle"></i>';
-        turn0 = true;
-    };
-
-    closeChooseMark();
-
-});
-
-
 
 
 let roundNumber = 1;
