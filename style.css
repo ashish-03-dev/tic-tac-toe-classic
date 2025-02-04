@@ -125,12 +125,12 @@
     align-items: center;
     box-sizing: border-box;
     position: relative;
-    scale: 0;
+    scale: 1;
     transition: transform .4s linear, scale .8s linear;
 }
 
 .box.zoom {
-    transform: scale(1.09);
+    transform: scale(1.14);
 }
 
 

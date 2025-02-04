@@ -59,8 +59,6 @@ function gameFnx() {
 
         setTimeout(() => {
 
-            // make boxes animation
-            makeBoxesAppear();
             disableBoxes();
 
             setTimeout(() => {
@@ -605,6 +603,9 @@ replay.addEventListener("click", restartGame);
 function restartGame() {
     let replay = document.querySelector(".replay");
     replay.style.opacity = "0";
+    
+    // makeBoxesAppear();
+
     setTimeout(() => {
         replay.style.display = "none";
         playerOWin = 0;
@@ -620,13 +621,7 @@ function restartGame() {
             // make game visibility
             game.style.opacity = "1";
 
-            // make boxes animation
-            makeBoxesAppear();
-
-            setTimeout(() => {
-
                 call3Round();
-            }, 1500);
 
         }, 100);
 
