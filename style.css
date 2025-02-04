@@ -227,12 +227,6 @@
     transition: box-shadow .4s linear;
 }
 
-.box:hover{
-    opacity: .6;
-}
-.box.clicked:hover{
-    opacity: 1;
-}
 
 .tick {
     height: 60px;
@@ -368,4 +362,14 @@
     font-size: 1.5rem;
     font-weight: 600;
     cursor: pointer;
+}
+
+@media (hover:hover){
+    .box:hover{
+        opacity: .6;
+    }
+    
+    .box.clicked:hover{
+        opacity: 1;
+    }
 }
