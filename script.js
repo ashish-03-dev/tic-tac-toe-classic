@@ -198,15 +198,6 @@ function setScoreNumber() {
 }
 
 
-
-
-// if (selectedPlayer == "double") {
-
-// } else {
-
-// }
-
-
 let boxesFilled = 0;
 let boxNodes = document.querySelectorAll(".box");
 boxNodes.forEach((node) => {
