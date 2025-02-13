@@ -295,6 +295,9 @@
     cursor: pointer;
 }
 
+.box.clicked{
+    box-shadow: 12px 12px 12px rgba(0,0,0,0.1) inset, -10px -10px 10px white inset;
+}
 @media (hover:hover) {
     .box:hover {
         opacity: .6;
