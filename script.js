@@ -589,7 +589,7 @@ replay.addEventListener("click", restartGame);
 function restartGame() {
     let replay = document.querySelector(".replay");
     replay.style.opacity = "0";
-    
+
     makeBoxesAppear();
 
     setTimeout(() => {
@@ -607,7 +607,7 @@ function restartGame() {
             // make game visibility
             game.style.opacity = "1";
 
-                call3Round();
+            call3Round();
 
         }, 100);
 

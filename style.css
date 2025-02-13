@@ -87,8 +87,8 @@
 .turn {
     height: 55px;
     width: 160px;
-    background-color: #8e5572;
-    color: #ffffff;
+    background-color: #f9f9f9;
+    color: grey;
     font-size: 2rem;
     font-weight: 800;
     text-align: center;
@@ -98,6 +98,8 @@
     transition: opacity .2s linear;
     margin-top: 30px;
     margin-bottom: 20px;
+    box-shadow: 12px 12px 12px rgba(0,0,0,0.1),-10px -10px 10px white;
+
 }
 
 .gameBoard {
@@ -111,10 +113,9 @@
     height: auto;
     width: auto;
     display: grid;
-    grid-gap: 1rem;
+    gap: 1rem;
     grid-template-rows: repeat(3, 100px);
     grid-template-columns: repeat(3, 100px);
-    
 }
 
 .box {
@@ -126,13 +127,13 @@
     box-sizing: border-box;
     position: relative;
     scale: 1;
-    transition: transform .4s linear, scale .8s linear;
+    transition: transform .4s linear, scale .8s linear,inset 1s linear;
     box-shadow: 12px 12px 12px rgba(0,0,0,0.1),-10px -10px 10px white;
 }
 
 
 .box.zoom {
-    transform: scale(1.14);
+    transform: scale(1.1);
 }
 
 
@@ -161,6 +162,9 @@
     font-family: 'Games', sans-serif;
     font-weight: 400;
     text-align: center;
+    border-radius: 10px;
+    padding: 5px 20px;
+    box-shadow: 12px 12px 12px rgba(0,0,0,0.1),-10px -10px 10px white;
     
 }
 
@@ -168,11 +172,10 @@
     height: 100px;
     width: 100%;
     padding: 10px 20px;
-    background-color: #e3e6e6;
+    background-color: #f9f9f9;
     font-size: 4rem;
     color: #8e5572;
-    border-top: 5px solid #8e5572;
-    border-bottom: 5px solid #8e5572;
+    border-radius: 10px;
     box-sizing: border-box;
     position: absolute;
     display: none;
@@ -185,6 +188,8 @@
     left: 50%;
     transform: translate(-50%, -50%);
     pointer-events: none;
+    box-shadow: 12px 12px 12px rgba(0,0,0,0.1),-10px -10px 10px white;
+
 
 }
 
@@ -193,7 +198,7 @@
     width: 100%;
     text-align: center;
     align-content: center;
-    background-color: #e3e6e6;
+    background-color: #f9f9f9;
     color: #8e5572;
     font-size: 3rem;
     font-weight: 800;
@@ -203,10 +208,10 @@
     left: 50%;
     transform: translate(-50%, -50%);
     opacity: 0;
-    border-top: 5px solid #8e5572;
-    border-bottom: 5px solid #8e5572;
     box-sizing: border-box;
     transition: transform .4s linear, opacity .4s linear;
+    box-shadow: 12px 12px 12px rgba(0,0,0,0.1),-10px -10px 10px white;
+
 
 }
 
@@ -234,9 +239,9 @@
 
 
 .replay {
-    height: 100px;
+    height: 150px;
     width: 330px;
-    background-color: #ffffff;
+    background-color: #f9f9f9;
     color: #8e5572;
     border-radius: 10px;
     font-size: 4rem;
@@ -248,7 +253,8 @@
     opacity: 0;
     transition: opacity .5s linear;
     cursor: pointer;
-    outline: 5px solid darkkhaki;
+    box-shadow: 12px 12px 12px rgba(0,0,0,0.1),-10px -10px 10px white;
+
 }
 
 .wrongMove {
@@ -268,8 +274,7 @@
     width: 180px;
     border: none;
     border-radius: 10px;
-    background-color: #8e5572;
-    color: white;
+    background-color: #f9f9f9;
     font-weight: 600;
     cursor: pointer;
     visibility: hidden;
@@ -279,6 +284,8 @@
     align-content: center;
     margin-top: 30px;
     margin-bottom: 20px;
+    box-shadow: 12px 12px 12px rgba(0,0,0,0.1),-10px -10px 10px white;
+
 }
 
 .caption::after {
@@ -289,7 +296,7 @@
 .reset {
     border: none;
     background: transparent;
-    color: #ffffff;
+    color: grey;
     font-size: 1.5rem;
     font-weight: 600;
     cursor: pointer;
