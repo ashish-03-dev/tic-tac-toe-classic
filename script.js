@@ -56,15 +56,11 @@ function gameFnx() {
 
         // make game visibility
         game.style.opacity = "1";
+        disableBoxes();
 
         setTimeout(() => {
 
-            disableBoxes();
-
-            setTimeout(() => {
-
-                call3Round();
-            }, 1500);
+            call3Round();
 
         }, 500);
 
@@ -433,7 +429,8 @@ function zoomInBoxes(listP) {
     let strArray = listP.map(String);
     for (let i of strArray) {
         let box = document.getElementById(i);
-        box.classList.add("zoom");
+        let tick = box.querySelector(".tick");
+        tick.style.scale="1.2";
     }
 
     setTimeout(() => {
@@ -446,7 +443,8 @@ function zoomOutBoxes(listP) {
     let strArray = listP.map(String);
     for (let i of strArray) {
         let box = document.getElementById(i);
-        box.classList.remove("zoom");
+        let tick = box.querySelector(".tick");
+        tick.style.scale="1";
     }
 }
 

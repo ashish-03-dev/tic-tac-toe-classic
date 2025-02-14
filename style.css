@@ -125,17 +125,11 @@
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    position: relative;
     scale: 1;
-    transition: transform .4s linear, scale .8s linear,inset 1s linear;
+    position: relative;
+    transition: scale .8s linear;
     box-shadow: 12px 12px 12px rgba(0,0,0,0.1),-10px -10px 10px white;
 }
-
-
-.box.zoom {
-    transform: scale(1.1);
-}
-
 
 .tick {
     height: 60px;
@@ -144,6 +138,13 @@
     text-align: center;
     font-size: 50px;
     align-content: center;
+    scale: 1;
+    transition: transform 0.3s linear,scale .4s linear;
+}
+
+.tick.zoom {
+    font-size: scale(1.2);
+    scale:1.2;
 }
 
 .scoreBoard {
@@ -240,7 +241,7 @@
 
 
 .replay {
-    height: 150px;
+    height: 130px;
     width: 330px;
     background-color: #f9f9f9;
     color: #8e5572;
