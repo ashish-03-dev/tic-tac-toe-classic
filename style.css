@@ -209,6 +209,7 @@
     transform: translate(-50%, -50%);
     opacity: 0;
     box-sizing: border-box;
+    border-radius: 10px;
     transition: transform .4s linear, opacity .4s linear;
     box-shadow: 12px 12px 12px rgba(0,0,0,0.1),-10px -10px 10px white;
 
@@ -221,7 +222,7 @@
     width: 330px;
     text-align: center;
     align-content: center;
-    background-color: #e3e6e6;
+    background-color: #f9f9f9;
     color: #8e5572;
     font-size: 3rem;
     font-weight: 800;
@@ -232,9 +233,9 @@
     transform: translate(-50%, -50%);
     opacity: 0;
     border-radius: 10px;
-    outline: 5px solid #8e5572;
     box-sizing: border-box;
     transition: opacity .4s linear;
+    box-shadow: 12px 12px 12px rgba(0,0,0,0.1),-10px -10px 10px white;
 }
 
 
