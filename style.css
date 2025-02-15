@@ -98,7 +98,7 @@
     transition: opacity .2s linear;
     margin-top: 30px;
     margin-bottom: 20px;
-    box-shadow: 12px 12px 12px rgba(0,0,0,0.1),-10px -10px 10px white;
+    box-shadow: 8px 8px 8px rgba(0,0,0,0.1),-8px -8px 8px white;
 
 }
 
@@ -128,7 +128,7 @@
     scale: 1;
     position: relative;
     transition: scale .8s linear;
-    box-shadow: 12px 12px 12px rgba(0,0,0,0.1),-10px -10px 10px white;
+    box-shadow: 8px 8px 8px rgba(0,0,0,0.1),-8px -8px 8px white;
 }
 
 .tick {
@@ -148,11 +148,11 @@
 }
 
 .scoreBoard {
-    height: 55px;
+    height: 60px;
     width: 100vw;
     display: flex;
     justify-content: space-around;
-    margin-top: 50px;
+    margin-top: 30px;
     pointer-events: none;
     color: #5e0035;
 }
@@ -165,7 +165,8 @@
     text-align: center;
     border-radius: 10px;
     padding: 5px 20px;
-    box-shadow: 12px 12px 12px rgba(0,0,0,0.1),-10px -10px 10px white;
+    box-sizing: border-box;
+    box-shadow: 8px 8px 8px rgba(0,0,0,0.1),-8px -8px 8px white;
     
 }
 
@@ -189,8 +190,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     pointer-events: none;
-    box-shadow: 12px 12px 12px rgba(0,0,0,0.1),-10px -10px 10px white;
-
+    box-shadow: 8px 8px 8px rgba(0,0,0,0.1),-8px -8px 8px white;
 
 }
 
@@ -212,8 +212,7 @@
     box-sizing: border-box;
     border-radius: 10px;
     transition: transform .4s linear, opacity .4s linear;
-    box-shadow: 12px 12px 12px rgba(0,0,0,0.1),-10px -10px 10px white;
-
+    box-shadow: 8px 8px 8px rgba(0,0,0,0.1),-8px -8px 8px white;
 
 }
 
@@ -236,7 +235,7 @@
     border-radius: 10px;
     box-sizing: border-box;
     transition: opacity .4s linear;
-    box-shadow: 12px 12px 12px rgba(0,0,0,0.1),-10px -10px 10px white;
+    box-shadow: 8px 8px 8px rgba(0,0,0,0.1),-8px -8px 8px white;
 }
 
 
@@ -255,7 +254,7 @@
     opacity: 0;
     transition: opacity .5s linear;
     cursor: pointer;
-    box-shadow: 12px 12px 12px rgba(0,0,0,0.1),-10px -10px 10px white;
+    box-shadow: 8px 8px 8px rgba(0,0,0,0.1),-8px -8px 8px white;
 
 }
 
@@ -286,7 +285,7 @@
     align-content: center;
     margin-top: 30px;
     margin-bottom: 20px;
-    box-shadow: 12px 12px 12px rgba(0,0,0,0.1),-10px -10px 10px white;
+    box-shadow: 8px 8px 8px rgba(0,0,0,0.1),-8px -8px 8px white;
 
 }
 
