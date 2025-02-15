@@ -1,3 +1,15 @@
+let number = document.querySelector(".number");
+let counter = 0;
+
+setInterval(() => {
+    if (counter == 100) {
+        clearInterval;
+    } else {
+        counter += 1;
+        number.innerHTML = `${counter}%`;
+    }
+}, 25);
+
 document.addEventListener("DOMContentLoaded", function () {
     setTimeout(function () {
 
@@ -33,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         }, 500);
 
-    }, 1200);
+    }, 3000);
 });
 
 
@@ -58,11 +70,7 @@ function gameFnx() {
         game.style.opacity = "1";
         disableBoxes();
 
-        setTimeout(() => {
-
-            call3Round();
-
-        }, 500);
+        call3Round();
 
     }, 100);
 
@@ -430,7 +438,7 @@ function zoomInBoxes(listP) {
     for (let i of strArray) {
         let box = document.getElementById(i);
         let tick = box.querySelector(".tick");
-        tick.style.scale="1.2";
+        tick.style.scale = "1.2";
     }
 
     setTimeout(() => {
@@ -444,7 +452,7 @@ function zoomOutBoxes(listP) {
     for (let i of strArray) {
         let box = document.getElementById(i);
         let tick = box.querySelector(".tick");
-        tick.style.scale="1";
+        tick.style.scale = "1";
     }
 }
 
