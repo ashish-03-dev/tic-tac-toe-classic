@@ -68,7 +68,7 @@ circle {
 }
 
 @keyframes anim {
-    100%{
+    100% {
         stroke-dashoffset: 0;
     }
 
@@ -107,7 +107,7 @@ svg {
     display: flex;
     align-items: center;
     z-index: 1;
-    background: linear-gradient(to right,#e91e63,#673ab7);
+    background: linear-gradient(to right, #e91e63, #673ab7);
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -176,8 +176,29 @@ svg {
     box-sizing: border-box;
     scale: 1;
     position: relative;
-    transition: scale .8s linear;
-    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.1), -8px -8px 8px white;
+    transition: scale .8s linear, box-shadow .2s linear;
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.1),
+        -8px -8px 8px white;
+
+}
+
+.box::before {
+    content: "";
+    position: absolute;
+    inset:0;
+    border-radius: inherit;
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0) inset;
+    transition: scale .8s linear, box-shadow .2s linear;
+    z-index: -1;
+}
+
+.box.clicked {
+    box-shadow:none;
+}
+
+.box.clicked::before {
+    box-shadow:8px 8px 8px rgba(0, 0, 0, 0.1) inset,
+        -8px -8px 8px white inset;
 }
 
 .tick {
@@ -347,10 +368,6 @@ svg {
     font-size: 1.5rem;
     font-weight: 600;
     cursor: pointer;
-}
-
-.box.clicked {
-    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.1) inset, -8px -8px 8px white inset;
 }
 
 @media (hover:hover) {
