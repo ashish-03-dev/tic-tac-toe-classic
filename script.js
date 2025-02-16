@@ -30,8 +30,9 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     //make game appear
     await appearFlex(game, 400);// 1000 ms for appear
-    
-    call3Round();
+
+    await delay(600);
+    callRoundBoard();
 })
 
 
@@ -100,7 +101,7 @@ let draw = document.querySelector(".drawBoard");
 let winner = document.querySelector(".winner");
 let round = document.querySelector(".round");
 let replay = document.querySelector(".replay");
-
+// let scoreBoard = document.querySelector(".scoreBoard");
 
 function makeBoxesAppear() {
     let boxNodes = document.querySelectorAll(".box");
@@ -129,39 +130,16 @@ function disableBoxes() {
 }
 
 
-async function call3Round() {
-
-    round.innerHTML = `<p><i>3 Rounds</i></p>`;
-
-    await appearBlock(round, 1200);
-    roundNumber = 1;
-
-    //call round Number
-    callRoundBoard()
-}
-
-
-
 async function callRoundBoard() {
     let str = `<p><i>Round ${roundNumber}</i></p>`;
     round.innerHTML = str;
 
     await appearBlock(round, 400);
-
     await delay(900);//let user see round board after appearing
 
-    //grow animation
-    roundFnxOut(round);
-}
-
-async function roundFnxOut(round) {
-
     await fadeOut(round, 400);
-
     showTurnArea();
     showTurn();
-
-
     enableBoxes();// enable boxes for clicks
 }
 
@@ -214,7 +192,7 @@ async function fill(box, n) {
         checkWinner();
         insetShadow(box);
         await delay(10);
-        div.style.scale="0.92";
+        div.style.scale = "0.92";
     }
     else {
         wrongMove();
@@ -323,8 +301,8 @@ async function checkWinner() {
 
 }
 
-function boxUnavailable(){
-    boxNodes.forEach((box)=>{
+function boxUnavailable() {
+    boxNodes.forEach((box) => {
         insetShadow(box);
     })
 }
@@ -438,8 +416,8 @@ function resetGame() {
     boxNodes.forEach((box) => {
         //remove box ticks
         let div = box.querySelector(".tick");
-        if (div)div.remove();
-        
+        if (div) div.remove();
+
         upShadow(box); //reset box hover effect and shadow
     })
 
@@ -449,7 +427,7 @@ function resetGame() {
 
 }
 
-async function upShadow(box){
+async function upShadow(box) {
     box.classList.remove("insetShadow");
     await delay(150);
     box.classList.remove("clicked");
@@ -477,5 +455,6 @@ async function restartGame() {
     setScoreNumber();
 
     await appearFlex(game, 400);
-    call3Round();
+    roundNumber = 1;
+    callRoundBoard();
 }
