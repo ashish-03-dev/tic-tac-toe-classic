@@ -335,7 +335,7 @@ async function zoomInBoxes(listP) {
     for (let i of strArray) {
         let box = document.getElementById(i);
         let tick = box.querySelector(".tick");
-        tick.style.scale = "1.1";
+        tick.style.scale = "1.15";
     }
 
     await delay(400);
