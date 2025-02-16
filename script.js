@@ -10,71 +10,97 @@ setInterval(() => {
     }
 }, 25);
 
-document.addEventListener("DOMContentLoaded", function () {
-    setTimeout(function () {
-
-        //given time to load
-
-        let load = document.querySelector(".loadingScreen");
-        load.style.opacity = "0";
-        load.style.visibility = "hidden";
-
-        setTimeout(function () {
-
-            load.style.display = "none";
-
-            //make page appear
-            let page = document.querySelector(".page");
-            page.style.display = "flex";
-
-            setTimeout(() => {
-                page.style.opacity = "1";
 
 
-                setTimeout(() => {
+document.addEventListener("DOMContentLoaded", async function () {
 
-                    //make heading animation
-                    let heading = document.querySelector(".heading");
-                    heading.classList.add("animate");
+    await delay(3000);//given time to load
 
-                    setTimeout(gameFnx, 1600);
+    await fadeOut(loader, 400);// fade out loader
 
-                }, 1000);
+    heading.style.opacity = "1";
+    await delay(1000);//heading appearance
 
-            }, 100);
+    //make heading animation
+    heading.classList.add("animate");
 
-        }, 500);
+    await delay(1600);//wait for heading animation
 
-    }, 3000);
-});
+    disableBoxes();
+
+    //make game appear
+    await appearFlex(game, 1000);// 1000 ms for appear
+
+    call3Round();
+})
+
+
+
+function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function appearFlex(node, ms) {
+    return new Promise(async resolve => {
+        node.style.display = "flex";
+
+        await delay(100);// give time for rendering display
+
+        node.style.opacity = "1";
+        node.style.visibility = "visible";
+
+        await delay(ms);//time for transition
+
+        resolve();
+    });
+}
+
+function appearBlock(node, ms) {
+    return new Promise(async resolve => {
+        node.style.display = "block";
+
+        await delay(100);// give time for rendering display
+
+        node.style.opacity = "1";
+        node.style.visibility = "visible";
+
+        await delay(ms);//time for transition
+
+        resolve();
+    });
+}
+
+
+function fadeOut(node, ms) {
+    return new Promise(async resolve => {
+
+        node.style.opacity = "0";
+
+        await delay(ms);//time for element to transition
+
+        node.style.display = "none";
+        node.style.visibility = "hidden";
+        resolve();
+    });
+}
+
 
 
 let code = '<i class="fa-regular fa-circle"></i>';
 let turn0 = true;
 
-
 let roundNumber = 1;
 let playerOWin = 0;
 let playerXWin = 0;
 
+let loader = document.querySelector(".loadingScreen");
+let heading = document.querySelector(".heading");
+let game = document.querySelector(".game");
+let draw = document.querySelector(".drawBoard");
+let winner = document.querySelector(".winner");
+let round = document.querySelector(".round");
+let replay = document.querySelector(".replay");
 
-//game inside page
-function gameFnx() {
-
-    let game = document.querySelector(".game");
-    game.style.display = "flex";
-
-    setTimeout(() => {
-
-        // make game visibility
-        game.style.opacity = "1";
-        disableBoxes();
-
-        call3Round();
-
-    }, 100);
-
-}
 
 function makeBoxesAppear() {
     let boxNodes = document.querySelectorAll(".box");
@@ -103,85 +129,43 @@ function disableBoxes() {
 }
 
 
-function call3Round() {
+async function call3Round() {
 
-    let round = document.querySelector(".round");
-    round.style.display = "block";
     round.innerHTML = `<p><i>3 Rounds</i></p>`;
 
-    setTimeout(() => {
+    await appearBlock(round, 1200);
+    roundNumber = 1;
 
-        round.style.opacity = "1";
-
-        setTimeout(() => {
-            roundNumber = 1;
-
-            //call round Number
-            callRoundBoard()
-
-        }, 1800);
-
-    }, 100);
+    //call round Number
+    callRoundBoard()
 }
 
 
-function callRoundBoard() {
 
-
-    let round = document.querySelector(".round");
-    round.style.display = "block";
-
+async function callRoundBoard() {
     let str = `<p><i>Round ${roundNumber}</i></p>`;
     round.innerHTML = str;
 
-    setTimeout(() => {
+    await appearBlock(round, 400);
 
-        round.style.opacity = "1";
-
-    }, 100);
-
+    await delay(900);//let user see round board after appearing
 
     //grow animation
     roundFnxOut(round);
+}
 
+async function roundFnxOut(round) {
+
+    await fadeOut(round, 400);
+
+    showTurnArea();
+    showTurn();
+
+
+    enableBoxes();// enable boxes for clicks
 }
 
 
-function makeCaptionVisible() {
-    //make caption visible
-    let caption = document.querySelector(".caption");
-    caption.style.visibility = "visible";
-    caption.style.opacity = "1";
-}
-
-function makeCaptionInvisible() {
-    //make caption invisible
-    let caption = document.querySelector(".caption");
-    caption.style.visibility = "hidden";
-    caption.style.opacity = "0";
-}
-
-
-function roundFnxOut(round) {
-    setTimeout(() => {
-
-
-        round.style.opacity = "0";
-        setTimeout(() => {
-
-            showTurnArea();
-            showTurn();
-
-            //make caption visible
-            makeCaptionVisible();
-
-            round.style.display = "none";
-            enableBoxes();
-
-        }, 400)
-
-    }, 1300)
-}
 
 function showTurnArea() {
     let turn = document.querySelector(".turn");
@@ -294,9 +278,6 @@ function checkWinner() {
         let isSubset = listP.every(num => new Set(checkPlayer.map(Number)).has(num));
         if (isSubset == true) {
 
-            //make caption invisible
-            makeCaptionInvisible();
-
             //glow boxes
             zoomInBoxes(listP);
 
@@ -313,7 +294,6 @@ function checkWinner() {
     if (boxesFilled == 9) {
         drawFnx();
     } else {
-
         //no winner so next turn
         changeTurn();
     }
@@ -322,90 +302,41 @@ function checkWinner() {
 
 
 //draw condition fnx
-function drawFnx() {
-
+async function drawFnx() {
     //disable boxes
     disableBoxes();
 
     roundNumber += 1;
 
-    setTimeout(() => {
+    await delay(1300);
 
-        //make caption invisible
-        makeCaptionInvisible();
+    // open DrawBoard;
+    await appearBlock(draw, 400);
 
-        if (roundNumber > 3) {
+    await delay(1400); //let user see
 
-            openDrawBoard();
+    // close DrawBoard
+    await fadeOut(draw, 400);//transition
 
-            setTimeout(() => {
+    //allow to see drawn match
+    await delay(1100);
 
-                closeDrawBoard();
+    resetGame();
 
-                setTimeout(() => {
+    await delay(1500);
 
-                    resetGame();
-                    showWinner();
-
-                }, 800)
-
-            }, 1400);
-
-        } else {
-
-            openDrawBoard();
-
-            setTimeout(() => {
-
-                closeDrawBoard();
-
-                setTimeout(() => {
-
-
-                    //allow to see drawn match
-                    setTimeout(() => {
-
-                        changeTurn();
-                        resetGame();
-                        callRoundBoard();
-
-                    }, 700);
-
-                }, 400)
-
-            }, 1400);
-
-        }
-
-    }, 1300);
-}
-
-
-//open draw board
-function openDrawBoard() {
-    let draw = document.querySelector(".drawBoard");
-    draw.style.display = "block";
-    setTimeout(() => {
-        draw.style.opacity = "1";
-
-    }, 100);
-}
-
-
-//close draw board
-function closeDrawBoard() {
-    let draw = document.querySelector(".drawBoard");
-    draw.style.opacity = "0";
-    setTimeout(() => {
-        draw.style.display = "none";
-
-    }, 400);
+    if (roundNumber > 3) {
+        showWinner();
+    } else {
+        changeTurn();
+        callRoundBoard();
+    }
 }
 
 
 
 //transition after winner
-function roundOver() {
+async function roundOver() {
 
     //set player wins value
     countPlayerScore();
@@ -413,27 +344,24 @@ function roundOver() {
     //increase round
     roundNumber += 1;
 
-    setTimeout(() => {
-        //given time to see board boxes
+    //given time to see board boxes
+    await delay(2500);
 
-        resetGame();
-        setTimeout(() => {
+    resetGame();
 
-            if (roundNumber > 3)
-                showWinner();
-            else {
-                callRoundBoard();
-                setTimeout(changeTurn, 1500);
-            }
+    await delay(500);
 
-        }, 500);
-
-    }, 2500)
-
+    if (roundNumber > 3)
+        showWinner();
+    else {
+        callRoundBoard();
+        setTimeout(changeTurn, 1500);
+    }
 }
 
+
 //glow the zoom and cleared by reset
-function zoomInBoxes(listP) {
+async function zoomInBoxes(listP) {
     let strArray = listP.map(String);
     for (let i of strArray) {
         let box = document.getElementById(i);
@@ -441,9 +369,8 @@ function zoomInBoxes(listP) {
         tick.style.scale = "1.2";
     }
 
-    setTimeout(() => {
-        zoomOutBoxes(listP);
-    }, 400);
+    await delay(400);
+    zoomOutBoxes(listP);
 }
 
 //remove zoom
@@ -470,12 +397,7 @@ function countPlayerScore() {
 }
 
 
-
-//reset Button
-let resetBtn = document.querySelector(".reset");
-resetBtn.addEventListener("click", resetGame);
-
-//reset function
+//reset Game
 function resetGame() {
     boxesFilled = 0;
     boxNodes.forEach((box) => {
@@ -483,12 +405,13 @@ function resetGame() {
         //remove box ticks
         let tick = box.querySelector(".tick");
 
-        //reset box hover effect
-        box.classList.remove("clicked");
 
         if (tick) {
             tick.remove();
         }
+
+        //reset box hover effect
+        box.classList.remove("clicked");
     })
 
     player1Boxes.splice(0, player1Boxes.length);
@@ -509,113 +432,57 @@ const winPatterns = [
 ];
 
 
-function showWinner() {
-    winnerStatusBoard();
-    setTimeout(closeStatusBoard, 2300);
+async function showWinner() {
+    writeWinner();
+    await appearBlock(winner, 400);
+
+    await delay(2300);
+
+    await fadeOut(winner, 400);
+    closeGame();
 }
 
-//winning board according to Player wins
-function winnerStatusBoard() {
-
+//Write in Winner Board
+function writeWinner() {
     hideTurnArea();
     let winnerName = document.querySelector(".winnerName");
 
     if (playerOWin == playerXWin) {
-
         winnerName.closest("div").style.width = "330px";
         winnerName.innerText = "Game Drawn";
-
-    } else {
-
+    }
+    else {
         winnerName.closest("div").style.width = "370px";
-
         if (playerOWin > playerXWin) {
-
             winnerName.innerText = "Player O WON";
-
         } else {
-
             winnerName.innerText = "Player X WON";
         }
-
     }
-    let node = document.querySelector(".winner");
-    node.style.display = "block";
-    setTimeout(() => {
-        node.style.opacity = "1";
-    }, 100);
 }
 
 
-//close Winner Board
-function closeStatusBoard() {
-    let node = document.querySelector(".winner");
-    node.style.opacity = "0";
-    setTimeout(() => {
-        node.style.display = "none";
 
-        //closing game page
-        closeGame();
-    }, 400);
-}
-
-function closeGame() {
-
+async function closeGame() {
     makeBoxesDisappear();
-
-    setTimeout(() => {
-        let game = document.querySelector(".game");
-        game.style.opacity = "0";
-
-        setTimeout(() => {
-            game.style.display = "none";
-
-            //call replay Board
-            replayBoard();
-
-        }, 600);
-
-    }, 1000);
+    await delay(1000);
+    await fadeOut(game, 600);
+    //call replay Board
+    appearBlock(replay, 500);
 }
 
-
-function replayBoard() {
-    let replay = document.querySelector(".replay");
-    replay.style.display = "block";
-    setTimeout(() => {
-        replay.style.opacity = "1";
-    }, 100);
-}
-
-
-let replay = document.querySelector(".replay");
 replay.addEventListener("click", restartGame);
 
-
-function restartGame() {
-    let replay = document.querySelector(".replay");
-    replay.style.opacity = "0";
+async function restartGame() {
+    await fadeOut(replay, 500);
 
     makeBoxesAppear();
 
-    setTimeout(() => {
-        replay.style.display = "none";
-        playerOWin = 0;
-        playerXWin = 0;
-        setScoreNumber();
+    await delay(500);
+    playerOWin = 0;
+    playerXWin = 0;
+    setScoreNumber();
 
-
-        let game = document.querySelector(".game");
-        game.style.display = "flex";
-
-        setTimeout(() => {
-
-            // make game visibility
-            game.style.opacity = "1";
-
-            call3Round();
-
-        }, 100);
-
-    }, 500)
+    await appearFlex(game, 400);
+    call3Round();
 }
