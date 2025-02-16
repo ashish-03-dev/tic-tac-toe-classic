@@ -112,7 +112,7 @@ svg {
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
-    transition: all 1.1s ease-in,opacity 0.4s;
+    transition: all 1.1s ease-in, opacity 0.4s;
 }
 
 .heading.animate {
@@ -127,7 +127,7 @@ svg {
     background-color: #F9f9f9;
     display: none;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
     opacity: 0;
     transition: opacity .4s linear;
@@ -177,28 +177,17 @@ svg {
     box-sizing: border-box;
     scale: 1;
     position: relative;
-    transition: scale .8s linear, box-shadow .2s linear;
+    transition: scale .8s linear, box-shadow .15s linear;
     box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.1),
         -8px -8px 8px white;
-
-}
-
-.box::before {
-    content: "";
-    position: absolute;
-    inset:0;
-    border-radius: inherit;
-    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0) inset;
-    transition: scale .8s linear, box-shadow .2s linear;
-    z-index: -1;
 }
 
 .box.clicked {
-    box-shadow:none;
+    box-shadow: none;
 }
 
-.box.clicked::before {
-    box-shadow:8px 8px 8px rgba(0, 0, 0, 0.1) inset,
+.box.clicked.insetShadow {
+    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.1) inset,
         -8px -8px 8px white inset;
 }
 
@@ -210,13 +199,9 @@ svg {
     font-size: 50px;
     align-content: center;
     scale: 1;
-    transition: transform 0.3s linear, scale .4s linear;
+    transition: scale 0.3s linear;
 }
 
-.tick.zoom {
-    font-size: scale(1.2);
-    scale: 1.2;
-}
 
 .scoreBoard {
     height: 100px;
@@ -245,6 +230,7 @@ svg {
     width: 100%;
     background-color: #f9f9f9;
     font-size: 4rem;
+    font-weight: 800;
     color: #8e5572;
     border-radius: 10px;
     position: absolute;
@@ -315,7 +301,7 @@ svg {
     color: #8e5572;
     border-radius: 10px;
     font-size: 4rem;
-    font-weight: 900;
+    font-weight: 800;
     text-align: center;
     align-content: center;
     position: absolute;

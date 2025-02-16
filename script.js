@@ -29,8 +29,8 @@ document.addEventListener("DOMContentLoaded", async function () {
     disableBoxes();
 
     //make game appear
-    await appearFlex(game, 1000);// 1000 ms for appear
-
+    await appearFlex(game, 400);// 1000 ms for appear
+    
     call3Round();
 })
 
@@ -188,10 +188,10 @@ function setScoreNumber() {
 
 let boxesFilled = 0;
 let boxNodes = document.querySelectorAll(".box");
-boxNodes.forEach((node) => {
-    node.onclick = (evt) => {
+boxNodes.forEach((box) => {
+    box.onclick = (evt) => {
         let n = evt.target.closest(".box").id;
-        fill(node, n);
+        fill(box, n);
     }
 }
 );
@@ -201,24 +201,31 @@ let player1Boxes = [];
 let player2Boxes = [];
 
 //every click
-function fill(node, n) {
-    if (!node.querySelector(".tick")) {
+async function fill(box, n) {
+    if (!box.querySelector(".tick")) {
 
-        let tick = document.createElement("div");
-        tick.innerHTML = code;
-        tick.classList.add("tick");
-        node.append(tick);
-        node.classList.add("clicked");
+        let div = document.createElement("div");
+        div.innerHTML = code;
+        div.classList.add("tick");
+        box.append(div);
 
         selectBox(n);
         boxesFilled++;
         checkWinner();
-
+        insetShadow(box);
+        await delay(10);
+        div.style.scale="0.92";
     }
     else {
         wrongMove();
     }
 
+}
+
+async function insetShadow(box) {
+    box.classList.add("clicked");
+    await delay(150);
+    box.classList.add("insetShadow");
 }
 
 
@@ -264,8 +271,19 @@ function showTurn() {
     else turn.innerHTML = "<p>TURN: X</p>";
 }
 
+
+const winPatterns = [
+    [0, 1, 2],
+    [0, 3, 6],
+    [0, 4, 8],
+    [1, 4, 7],
+    [2, 5, 8],
+    [2, 4, 6],
+    [3, 4, 5],
+    [6, 7, 8]
+];
 //check Winner
-function checkWinner() {
+async function checkWinner() {
 
     let checkPlayer;
     if (turn0)
@@ -278,12 +296,17 @@ function checkWinner() {
         let isSubset = listP.every(num => new Set(checkPlayer.map(Number)).has(num));
         if (isSubset == true) {
 
-            //glow boxes
-            zoomInBoxes(listP);
-
             // disable boxes
             disableBoxes();
 
+            // await delay(300);
+            //inset Shadow
+            boxUnavailable();
+
+            await delay(800);
+            zoomInBoxes(listP);
+
+            await delay(700);
             //after win
             roundOver();
             return;
@@ -300,73 +323,19 @@ function checkWinner() {
 
 }
 
-
-//draw condition fnx
-async function drawFnx() {
-    //disable boxes
-    disableBoxes();
-
-    roundNumber += 1;
-
-    await delay(1300);
-
-    // open DrawBoard;
-    await appearBlock(draw, 400);
-
-    await delay(1400); //let user see
-
-    // close DrawBoard
-    await fadeOut(draw, 400);//transition
-
-    //allow to see drawn match
-    await delay(1100);
-
-    resetGame();
-
-    await delay(1500);
-
-    if (roundNumber > 3) {
-        showWinner();
-    } else {
-        changeTurn();
-        callRoundBoard();
-    }
+function boxUnavailable(){
+    boxNodes.forEach((box)=>{
+        insetShadow(box);
+    })
 }
 
-
-
-//transition after winner
-async function roundOver() {
-
-    //set player wins value
-    countPlayerScore();
-
-    //increase round
-    roundNumber += 1;
-
-    //given time to see board boxes
-    await delay(2500);
-
-    resetGame();
-
-    await delay(500);
-
-    if (roundNumber > 3)
-        showWinner();
-    else {
-        callRoundBoard();
-        setTimeout(changeTurn, 1500);
-    }
-}
-
-
-//glow the zoom and cleared by reset
+//zoom
 async function zoomInBoxes(listP) {
     let strArray = listP.map(String);
     for (let i of strArray) {
         let box = document.getElementById(i);
         let tick = box.querySelector(".tick");
-        tick.style.scale = "1.2";
+        tick.style.scale = "1.1";
     }
 
     await delay(400);
@@ -379,7 +348,42 @@ function zoomOutBoxes(listP) {
     for (let i of strArray) {
         let box = document.getElementById(i);
         let tick = box.querySelector(".tick");
-        tick.style.scale = "1";
+        tick.style.scale = ".92";
+    }
+}
+
+
+//draw condition fnx
+async function drawFnx() {
+    //disable boxes
+    disableBoxes();
+
+    await delay(1200);
+
+    // open DrawBoard;
+    await appearBlock(draw, 400);
+
+    await delay(1400); //let user see
+
+    // close DrawBoard
+    await fadeOut(draw, 400);//transition
+
+    roundOver();
+}
+
+
+//Every round Over
+async function roundOver() {
+    countPlayerScore(); //set player wins value
+    roundNumber += 1; //increase round
+    await delay(800); //given time to see board boxes
+    resetGame();
+    await delay(800); // 300ms for reset Shadows
+    if (roundNumber > 3)
+        showWinner();
+    else {
+        callRoundBoard();
+        setTimeout(changeTurn, 1500);
     }
 }
 
@@ -397,41 +401,6 @@ function countPlayerScore() {
 }
 
 
-//reset Game
-function resetGame() {
-    boxesFilled = 0;
-    boxNodes.forEach((box) => {
-
-        //remove box ticks
-        let tick = box.querySelector(".tick");
-
-
-        if (tick) {
-            tick.remove();
-        }
-
-        //reset box hover effect
-        box.classList.remove("clicked");
-    })
-
-    player1Boxes.splice(0, player1Boxes.length);
-    player2Boxes.splice(0, player2Boxes.length);
-
-}
-
-
-const winPatterns = [
-    [0, 1, 2],
-    [0, 3, 6],
-    [0, 4, 8],
-    [1, 4, 7],
-    [2, 5, 8],
-    [2, 4, 6],
-    [3, 4, 5],
-    [6, 7, 8]
-];
-
-
 async function showWinner() {
     writeWinner();
     await appearBlock(winner, 400);
@@ -441,6 +410,7 @@ async function showWinner() {
     await fadeOut(winner, 400);
     closeGame();
 }
+
 
 //Write in Winner Board
 function writeWinner() {
@@ -461,6 +431,29 @@ function writeWinner() {
     }
 }
 
+
+//reset Game
+function resetGame() {
+    boxesFilled = 0;
+    boxNodes.forEach((box) => {
+        //remove box ticks
+        let div = box.querySelector(".tick");
+        if (div)div.remove();
+        
+        upShadow(box); //reset box hover effect and shadow
+    })
+
+    //set player boxes empty
+    player1Boxes.splice(0, player1Boxes.length);
+    player2Boxes.splice(0, player2Boxes.length);
+
+}
+
+async function upShadow(box){
+    box.classList.remove("insetShadow");
+    await delay(150);
+    box.classList.remove("clicked");
+}
 
 
 async function closeGame() {
