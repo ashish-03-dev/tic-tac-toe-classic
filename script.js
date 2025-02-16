@@ -101,23 +101,7 @@ let draw = document.querySelector(".drawBoard");
 let winner = document.querySelector(".winner");
 let round = document.querySelector(".round");
 let replay = document.querySelector(".replay");
-// let scoreBoard = document.querySelector(".scoreBoard");
 
-function makeBoxesAppear() {
-    let boxNodes = document.querySelectorAll(".box");
-    boxNodes.forEach((box) => {
-        box.style.scale = "1";
-    })
-
-}
-
-function makeBoxesDisappear() {
-    let boxNodes = document.querySelectorAll(".box");
-    boxNodes.forEach((box) => {
-        box.style.scale = "0";
-    })
-
-}
 
 function enableBoxes() {
     let board = document.querySelector(".board");
@@ -202,7 +186,7 @@ async function fill(box, n) {
 
 async function insetShadow(box) {
     box.classList.add("clicked");
-    await delay(150);
+    await delay(180);
     box.classList.add("insetShadow");
 }
 
@@ -386,6 +370,7 @@ async function showWinner() {
     await delay(2300);
 
     await fadeOut(winner, 400);
+    await delay(200);
     closeGame();
 }
 
@@ -435,9 +420,10 @@ async function upShadow(box) {
 
 
 async function closeGame() {
-    makeBoxesDisappear();
-    await delay(1000);
-    await fadeOut(game, 600);
+
+    await delay(500);
+    await fadeOut(game, 400);
+
     //call replay Board
     appearBlock(replay, 500);
 }
@@ -447,9 +433,6 @@ replay.addEventListener("click", restartGame);
 async function restartGame() {
     await fadeOut(replay, 500);
 
-    makeBoxesAppear();
-
-    await delay(500);
     playerOWin = 0;
     playerXWin = 0;
     setScoreNumber();
