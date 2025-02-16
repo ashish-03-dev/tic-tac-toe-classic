@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     //make heading animation
     heading.classList.add("animate");
 
-    await delay(1600);//wait for heading animation
+    await delay(1200);//wait for heading animation
 
     disableBoxes();
 

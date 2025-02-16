@@ -210,8 +210,6 @@ svg {
     justify-content: space-around;
     pointer-events: none;
     color: #5e0035;
-    /* opacity: 0; */
-    /* transition: opacity 0.4s linear; */
 }
 
 .score {
