@@ -429,7 +429,7 @@ function resetGame() {
 
 async function upShadow(box) {
     box.classList.remove("insetShadow");
-    await delay(150);
+    await delay(180);
     box.classList.remove("clicked");
 }
 
