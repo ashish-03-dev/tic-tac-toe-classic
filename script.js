@@ -356,7 +356,7 @@ async function roundOver() {
     roundNumber += 1; //increase round
     await delay(800); //given time to see board boxes
     resetGame();
-    await delay(800); // 300ms for reset Shadows
+    await delay(1000); // 300ms for reset Shadows
     if (roundNumber > 3)
         showWinner();
     else {
