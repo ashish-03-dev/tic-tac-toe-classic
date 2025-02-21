@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     //make game appear
     await appearFlex(game, 400);// 1000 ms for appear
 
-    await delay(600);
+    await delay(450);
     callRoundBoard();
 })
 
@@ -118,10 +118,10 @@ async function callRoundBoard() {
     let str = `<p><i>Round ${roundNumber}</i></p>`;
     round.innerHTML = str;
 
-    await appearBlock(round, 400);
+    await appearBlock(round, 200);
     await delay(900);//let user see round board after appearing
 
-    await fadeOut(round, 400);
+    await fadeOut(round, 200);
     showTurnArea();
     showTurn();
     enableBoxes();// enable boxes for clicks
@@ -173,10 +173,10 @@ async function fill(box, n) {
 
         selectBox(n);
         boxesFilled++;
-        checkWinner();
         insetShadow(box);
         await delay(10);
         div.style.scale = "0.92";
+        checkWinner();
     }
     else {
         wrongMove();
@@ -205,11 +205,8 @@ function wrongMove() {
 
 //push box into players box list
 function selectBox(n) {
-    if (turn0) {
-        player1Boxes.push(n)
-    } else {
-        player2Boxes.push(n);
-    }
+    if (turn0) player1Boxes.push(n)
+    else player2Boxes.push(n);
 }
 
 
@@ -229,8 +226,10 @@ function changeTurn() {
 
 function showTurn() {
     let turn = document.querySelector(".turn");
-    if (turn0) turn.innerHTML = "<p>TURN: O</p>";
-    else turn.innerHTML = "<p>TURN: X</p>";
+    if (turn0)
+        turn.innerHTML = "<p>TURN: O</p>";
+    else
+        turn.innerHTML = "<p>TURN: X</p>";
 }
 
 
@@ -261,7 +260,7 @@ async function checkWinner() {
             // disable boxes
             disableBoxes();
 
-            // await delay(300);
+            await delay(300);
             //inset Shadow
             boxUnavailable();
 
