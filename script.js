@@ -176,13 +176,37 @@ async function fill(box, n) {
         insetShadow(box);
         await delay(10);
         div.style.scale = "0.92";
-        checkWinner();
+
+        let win = checkWinner();
+
+        if (win)
+            winProcedure(win);
+        else if (boxesFilled == 9)
+            drawFnx(); // Draw condition
+        else
+            changeTurn();
     }
     else {
         wrongMove();
     }
 
 }
+async function winProcedure(listP) {
+    // disable boxes
+    disableBoxes();
+
+    await delay(300);
+    //inset Shadow
+    boxUnavailable();
+
+    await delay(800);
+    zoomInBoxes(listP);
+
+    await delay(700);
+    //after win
+    roundOver();
+}
+
 
 async function insetShadow(box) {
     box.classList.add("clicked");
@@ -244,7 +268,7 @@ const winPatterns = [
     [6, 7, 8]
 ];
 //check Winner
-async function checkWinner() {
+function checkWinner() {
 
     let checkPlayer;
     if (turn0)
@@ -256,33 +280,33 @@ async function checkWinner() {
     for (let listP of winPatterns) {
         let isSubset = listP.every(num => new Set(checkPlayer.map(Number)).has(num));
         if (isSubset == true) {
-
-            // disable boxes
-            disableBoxes();
-
-            await delay(300);
-            //inset Shadow
-            boxUnavailable();
-
-            await delay(800);
-            zoomInBoxes(listP);
-
-            await delay(700);
-            //after win
-            roundOver();
-            return;
+            return (listP);
         }
     }
-
-    //draw Condition
-    if (boxesFilled == 9) {
-        drawFnx();
-    } else {
-        //no winner so next turn
-        changeTurn();
-    }
-
+    return null;
 }
+
+
+
+//draw condition fnx
+async function drawFnx() {
+    //disable boxes
+    disableBoxes();
+
+    await delay(1200);
+
+    // open DrawBoard;
+    await appearBlock(draw, 400);
+
+    await delay(1400); //let user see
+
+    // close DrawBoard
+    await fadeOut(draw, 400);//transition
+
+    roundOver();
+}
+
+
 
 function boxUnavailable() {
     boxNodes.forEach((box) => {
@@ -311,25 +335,6 @@ function zoomOutBoxes(listP) {
         let tick = box.querySelector(".tick");
         tick.style.scale = ".92";
     }
-}
-
-
-//draw condition fnx
-async function drawFnx() {
-    //disable boxes
-    disableBoxes();
-
-    await delay(1200);
-
-    // open DrawBoard;
-    await appearBlock(draw, 400);
-
-    await delay(1400); //let user see
-
-    // close DrawBoard
-    await fadeOut(draw, 400);//transition
-
-    roundOver();
 }
 
 
