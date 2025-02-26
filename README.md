@@ -2,7 +2,7 @@
 *A modern, sleek two-player Tic-Tac-Toe game built with HTML, CSS, and JavaScript.*  
 
 ## 🚀 Live Demo  
-🔗 [Live Preview](#) *(Add your live link if hosted on GitHub Pages or Netlify)*  
+🔗 [Live Preview](#) (https://tic-tac-wars.vercel.app/)
 
 ## 📌 About the Project  
 This is a **responsive, interactive Tic-Tac-Toe game** where two players compete in a best-of-three format. The game features smooth animations, real-time turn updates, and refined UI elements for a better user experience.  
@@ -17,9 +17,10 @@ This is a **responsive, interactive Tic-Tac-Toe game** where two players compete
 
 ## 🎮 How to Play  
 1. Players take turns clicking on the grid to place their mark (X or O).  
-2. The game automatically updates turns and displays the winner of each round.  
-3. The first player to win **two out of three rounds** is declared the overall winner.  
-4. Enjoy smooth animations and a sleek UI for an enhanced experience!  
+2. The game automatically updates turns and keeps track of the score for each round.  
+3. After three rounds, the player with the higher score is declared the overall winner.  
+4. If both players have the same score after three rounds, the game ends in a draw.  
+5. Enjoy smooth animations and a sleek UI for an enhanced experience!  
 
 ## 🛠️ Technologies Used  
 - **HTML5**  
@@ -28,4 +29,4 @@ This is a **responsive, interactive Tic-Tac-Toe game** where two players compete
 
 ## 📧 Contact  
 📩 Email: [ashish03.dev@gmail.com](mailto:ashish03.dev@gmail.com)  
-🔗 [LinkedIn](https://www.linkedin.com/in/ashish-kumar-5655a6288)  
+🔗 [LinkedIn](https://www.linkedin.com/in/ashish-kumar-03-dev)
