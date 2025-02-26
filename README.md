@@ -15,17 +15,16 @@ This is a **responsive, interactive Tic-Tac-Toe game** where two players compete
 ✔️ Sleek and modern design  
 ✔️ Enhanced user experience with finer details  
 
+## 🎮 How to Play  
+1. Players take turns clicking on the grid to place their mark (X or O).  
+2. The game automatically updates turns and displays the winner of each round.  
+3. The first player to win **two out of three rounds** is declared the overall winner.  
+4. Enjoy smooth animations and a sleek UI for an enhanced experience!  
+
 ## 🛠️ Technologies Used  
 - **HTML5**  
 - **CSS3** (including CSS Grid)  
 - **JavaScript (ES6+)**  
-
-## 📂 Installation & Usage  
-1. Clone this repository:  
-   ```bash
-   git clone https://github.com/your-username/tic-tac-toe.git
-   ```  
-2. Open `index.html` in a browser.  
 
 ## 📧 Contact  
 📩 Email: [ashish03.dev@gmail.com](mailto:ashish03.dev@gmail.com)  
