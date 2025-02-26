@@ -29,4 +29,4 @@ This is a **responsive, interactive Tic-Tac-Toe game** where two players compete
 
 ## 📧 Contact  
 📩 Email: [ashish03.dev@gmail.com](mailto:ashish03.dev@gmail.com)  
-🔗 [LinkedIn](https://www.linkedin.com/in/ashish-kumar-03-dev)
+🔗 [LinkedIn] [linkedin.com/in/ashish-kumar-03-dev](https://www.linkedin.com/in/ashish-kumar-03-dev)
